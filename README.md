@@ -23,11 +23,11 @@ Uma instância é dada por um arquivo texto no seguinte formato:
   - o exemplo abaixo é uma instância do jogo com 4 linhas, 5 colunas e
     3 cores:
   
-    4 5 3
-    2 3 2 3 2 
-    2 1 2 3 3 
-    3 1 2 3 2 
-    1 2 2 1 3 
+    4 5 3<br>
+    2 3 2 3 2 <br>
+    2 1 2 3 3 <br>
+    3 1 2 3 2 <br>
+    1 2 2 1 3 <br>
 
 A saída do seu  programa deve ser pela saída padrão  do sistema e deve
 conter duas linhas  de texto:
@@ -54,38 +54,38 @@ seguintes transformações ocorrem no tabuleiro:
 
 Pintar com a cor 3:
 
-  3 3 2 3 2 
-  3 1 2 3 3 
-  3 1 2 3 2 
-  1 2 2 1 3 
+  3 3 2 3 2 <br>
+  3 1 2 3 3 <br>
+  3 1 2 3 2 <br>
+  1 2 2 1 3 <br>
 
 Pintar com a cor 2:
 
-  2 2 2 3 2 
-  2 1 2 3 3 
-  2 1 2 3 2 
-  1 2 2 1 3 
+  2 2 2 3 2 <br>
+  2 1 2 3 3 <br>
+  2 1 2 3 2 <br>
+  1 2 2 1 3 <br>
 
 Pintar com a cor 1:
 
-  1 1 1 3 2 
-  1 1 1 3 3 
-  1 1 1 3 2 
-  1 1 1 1 3
+  1 1 1 3 2 <br>
+  1 1 1 3 3 <br>
+  1 1 1 3 2 <br>
+  1 1 1 1 3<br>
 
 Pintar com a cor 3:
 
-  3 3 3 3 2 
-  3 3 3 3 3 
-  3 3 3 3 2 
-  3 3 3 3 3 
+  3 3 3 3 2 <br>
+  3 3 3 3 3 <br>
+  3 3 3 3 2 <br>
+  3 3 3 3 3 <br>
 
 Pintar com a cor 2:
 
-  2 2 2 2 2 
-  2 2 2 2 2 
-  2 2 2 2 2 
-  2 2 2 2 2
+  2 2 2 2 2 <br>
+  2 2 2 2 2 <br>
+  2 2 2 2 2 <br>
+  2 2 2 2 2<br>
 
 Note  que ao  final  o tabuleiro  tem uma  única  cor. Portanto,  esta
 sequência resolve a instância dada como exemplo.
