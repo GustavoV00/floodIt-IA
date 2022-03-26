@@ -1,25 +1,40 @@
-CC=gcc
-CFLAGS=-Wall
-# DEPS = hellomake.h
+C_FILES = $(wildcard src/*.c)
+O_FILES = $(C_FILES:src/%.c=build/%.o)
+CC = gcc
+CFLAGS = -Wall -g
 
-# %.o: %.c $(DEPS)
+CC_VERBOSE = $(CC)
+CC_NO_VERBOSE = @echo "Building $@..."; $(CC)
+
+ifeq ($(VERBOSE),YES)
+  V_CC = $(CC_VERBOSE)
+  AT := 
+else
+  V_CC = $(CC_NO_VERBOSE)
+  AT := @
+endif
+
+.PHONY: all clean
+.DEFAULT: all
 
 all: floodit
 
-run1:
-	./floodit < knapsack.in
+run:
+	./floodit
 
-run2:
-	./knapsack-parallel < knapsack.in
+floodit: $(O_FILES)
+	$(V_CC) -o $@ $^
 
-%.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS) 
+build:
+	@mkdir -p build
 
-serial: floodit.o 
-	$(CC) -o floodit knapsack-serial.o $(CFLAGS)
-
+build/%.o: src/%.c | build
+	$(CC) -c $< -o $@
 
 clean:
-	rm *.o
-	rm floodit
-	rm knapsack-parallel
+	@echo Removing object files
+	$(AT)-rm -f $(O_FILES)
+	@echo Removing application
+	$(AT)-rm -f floodit
+	@echo Removing build directory
+	$(AT)-rm -rf build
