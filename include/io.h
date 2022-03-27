@@ -7,7 +7,8 @@
 FILE *open_file();
 void error_when_open_file(FILE *f);
 void read_board_configs(int *board_arr, FILE *f);
-void read_board_data(int lin, int col, FILE *board_file, struct Graph *graph_t);
+struct Graph *read_board_data(int lin, int col, FILE *board_file,
+                              struct Graph *graph_t);
 void close_file(FILE *file);
 
 #endif
