@@ -1,5 +1,5 @@
-// GRR20182557 Gustavo Valente Nunes
 #include "../include/queue.h"
+#include "../include/includes.h"
 #include <stdio.h>
 
 int queue_append(queue_t **queue, queue_t *elem) {
@@ -128,4 +128,46 @@ int queue_size(queue_t *queue) {
       tamanhoFila += 1;
     return tamanhoFila;
   }
+}
+
+int fila_correta(queue_state_t *fila) {
+  queue_state_t *aux;
+
+  // uma fila vazia sempre está correta
+  if (!fila)
+    return 1;
+
+  // fila com um só elemento e correta
+  if ((fila->next == fila) && (fila->prev == fila))
+    return 1;
+
+  // fila com um só elemento, mas incorreta
+  if ((fila->next == fila) || (fila->prev == fila)) {
+    printf("ERRO: ponteiros errados na fila com um elemento\n");
+    return 0;
+  }
+
+  // fila com mais elementos, percorrer e testar todos os ponteiros
+  aux = fila;
+  do {
+    // testa ponteiro next (avaliação em curto-circuito)
+    if (aux->next && (aux->next->prev == aux))
+      ; // ponteiro ok
+    else {
+      printf("ERRO: ponteiros errados ->next ou ->next->prev\n");
+      return 0;
+    }
+
+    // testa ponteiro prev (avaliação em curto-circuito)
+    if (aux->prev && (aux->prev->next == aux))
+      ; // ponteiro ok
+    else {
+      printf("ERRO: ponteiros errados ->prev ou ->prev->next\n");
+      return 0;
+    }
+    aux = aux->next;
+  } while (aux != fila);
+
+  // passou por tudo, estrutura da fila parece estar ok
+  return 1;
 }

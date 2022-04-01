@@ -14,6 +14,7 @@ typedef struct state_t {
   int f_n;
   int visited;
   int h_n;
+  int id;
 } state_t;
 
 typedef struct bounds_t {
@@ -25,7 +26,6 @@ typedef struct bounds_t {
 typedef struct queue_state_t {
   struct queue_state_t *prev;
   struct queue_state_t *next;
-  int visited;
   struct state_t st;
 } queue_state_t;
 

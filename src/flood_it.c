@@ -2,6 +2,7 @@
 #include "../include/includes.h"
 #include "../include/queue.h"
 #include "../include/utils.h"
+#include <assert.h>
 
 void print_fila(void *ptr) {
   struct queue_state_t *elem = ptr;
@@ -15,8 +16,10 @@ void print_fila(void *ptr) {
 }
 
 bool goal(struct queue_state_t *queue, int tam) {
+  int n = queue_size((queue_t *)queue);
+  printf("Tamanho fila results: %d\n", n);
 
-  if (queue_size((queue_t *)queue) != tam)
+  if (n != tam)
     return false;
 
   return true;
@@ -34,8 +37,10 @@ queue_state_t *init_elem(state_t elem, queue_state_t *f) {
 
 queue_state_t *equals_neighbors(state_t **m, queue_state_t *f, state_t value1,
                                 state_t neighbor) {
-  if (value1.value != neighbor.value)
+  if (value1.value != neighbor.value && value1.value != 0 &&
+      neighbor.value != 0) {
     f = init_elem(neighbor, f);
+  }
 
   return f;
 }
@@ -46,6 +51,18 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
                                 queue_state_t *possible_next) {
   int i = elem.lin;
   int j = elem.col;
+  if (i > 0 && j > 0 && j < col_max - 1 && i < lin_max - 1) {
+    // printf("Deu merda aqui\n");
+    possible_next =
+        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 0]);
+    possible_next =
+        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 0]);
+    possible_next =
+        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 0][j]);
+    possible_next =
+        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i - 0][j]);
+    return possible_next;
+  }
   if (i == 0) {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
@@ -57,7 +74,7 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
                                        matrix[i][j - 1]);
     return possible_next;
   }
-  if (i == lin_max) {
+  if (i == lin_max - 1) {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
     possible_next =
@@ -89,15 +106,6 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
 
     return possible_next;
   }
-  printf("Deu merda aqui\n");
-  possible_next =
-      equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
-  possible_next =
-      equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 1]);
-  possible_next =
-      equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
-  possible_next =
-      equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i - 1][j]);
 
   return possible_next;
 }
@@ -109,7 +117,7 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
     // printf("%d || %d e %d \n", m[i][j].value, i, j);
     // if (m[i][j].visited == 1) {
     if (m[i][j].value == f->st.value && m[i][j].visited == 0) {
-      printf("%d || %d e %d \n", m[i][j].value, i, j);
+      // printf("%d || %d e %d \n", m[i][j].value, i, j);
       f = init_elem(m[i][j], f);
       m[i][j].visited = 1;
     } else {
@@ -117,17 +125,17 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
     }
   } else {
     f = init_elem(m[i][j], f);
-    printf("%d || %d e %d \n", m[i][j].value, i, j);
+    // printf("%d || %d e %d \n", m[i][j].value, i, j);
     m[i][j].visited = 1;
   }
 
-  if (j < col_max)
+  if (j < col_max - 1)
     f = find_equals(f, m, i, j + 1, lin_max, col_max, flag);
 
   if (j > 0)
     f = find_equals(f, m, i, j - 1, lin_max, col_max, flag);
 
-  if (i < lin_max)
+  if (i < lin_max - 1)
     f = find_equals(f, m, i + 1, j, lin_max, col_max, flag);
 
   if (i > 0)
@@ -140,7 +148,6 @@ queue_state_t *search_boards(state_t **matrix, queue_state_t *results, int lin,
                              int col, queue_state_t *possible_next) {
   queue_state_t *aux = results;
 
-  // Melhorar isso aqui mais tarde, sem utilizar o queue_size
   do {
     state_t elem = aux->st;
     // printf("m[%d][%d]: %d\n", elem.lin, elem.col, elem.value);
@@ -175,34 +182,34 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   int new_best;
   aux = aux->next;
   do {
-    if (aux->st.value != f->st.value) {
-      new_elem = aux->st;
-      new_best = new_elem.g_n +
-                 calc_heuristic(new_elem.lin, new_elem.col, max_lin, max_col);
-      if (new_best < best) {
-        best_elem = new_elem;
-        best = new_best;
-      }
+    new_elem = aux->st;
+    new_best = new_elem.g_n +
+               calc_heuristic(new_elem.lin, new_elem.col, max_lin, max_col);
+    if (new_best < best) {
+      best_elem = new_elem;
+      best = new_best;
     }
     aux = aux->next;
+    // printf("To aqui\n");
   } while (aux != possible_next);
 
   return best_elem;
 }
 
 queue_state_t *remove_all_possible_colors(queue_state_t *f) {
-  queue_state_t *aux = f->prev;
-  int n = queue_size((queue_t *)f);
-  printf("%d\n", n);
-  int i = 0;
-  while (i < n) {
-    queue_remove((queue_t **)&f, (queue_t *)aux);
-    // free(aux);
-    f = f->prev;
+  queue_state_t *aux = f;
+  aux = aux->next;
+
+  while (f) {
     aux = f;
-    i += 1;
+    // printf("Elemento a ser removido: %d\n", aux->st.value);
+    queue_remove((queue_t **)&f, (queue_t *)aux);
+    assert(fila_correta(f));   // estrutura continua correta
+    assert(aux->prev == NULL); // testa elemento removido
+    assert(aux->next == NULL); // testa elemento removido
   }
 
+  // printf("Estou aqui\n");
   return f;
 }
 
@@ -227,35 +234,37 @@ queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color) {
   return f;
 }
 
-int *a_star(state_t **matrix_data, state_t **matrix_data_aux, int lin, int col,
-            int num_colors) {
+int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
 
-  // print_matrix(matrix_data_aux, lin, col);
+  // print_matrix(matrix_data, lin, col);
   queue_state_t *possible_next = NULL;
   queue_state_t *results = NULL;
-  // results = init_elem(matrix_data_aux[0][0], results);
+  // results = init_elem(matrix_data[0][0], results);
 
   queue_state_t *aux = results;
   int flag = 1;
-  results = find_equals(aux, matrix_data_aux, 0, 0, lin, col, flag);
-  // results = find_equals(aux, matrix_data_aux, 1, 0, lin, col, flag);
+  results = find_equals(aux, matrix_data, 0, 0, lin, col, flag);
+  // results = find_equals(aux, matrix_data, 1, 0, lin, col, flag);
 
   queue_print("Results: ", (queue_t *)results, print_fila);
   int i = 0;
-  int n = 3;
-  while (i < n) {
+  int n = 7;
+  while (!goal(results, lin * col)) {
+    printf("Jogadas: %d\n", i);
 
-    print_matrix(matrix_data_aux, lin, col);
+    print_matrix(matrix_data, lin, col);
     possible_next =
-        search_boards(matrix_data_aux, results, lin, col, possible_next);
-    queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
+        search_boards(matrix_data, results, lin, col, possible_next);
+    // queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
     state_t next_color = chose_next_color(possible_next, lin, col, results);
     // add_next_state_to_board()
-    printf("NextColor: %d\n", next_color.value);
-    results = color_the_board(results, matrix_data_aux, next_color);
+    // printf("NextColor: %d\n", next_color.value);
+    results = color_the_board(results, matrix_data, next_color);
 
     possible_next = remove_all_possible_colors(possible_next);
-    queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
+    results = remove_all_possible_colors(results);
+    // queue_print("Colors after remove best color: ", (queue_t *)possible_next,
+    //             print_fila);
 
     // scanf("Text state: %d", &flag);
     // if (flag == 0) {
@@ -264,12 +273,15 @@ int *a_star(state_t **matrix_data, state_t **matrix_data_aux, int lin, int col,
 
     // remove_all_possible_colors()
     // state_t *next_elem = calc_heuristic(possible_next);
-    // print_matrix(matrix_data_aux, lin, col);
+    // print_matrix(matrix_data, lin, col);
     aux = results;
-    results = find_equals(aux, matrix_data_aux, 0, 0, lin, col, flag);
+    results = find_equals(aux, matrix_data, 0, 0, lin, col, flag);
     // queue_print("Results: : ", (queue_t *)results, print_fila);
     i += 1;
   }
+
+  printf("Jogadas totais: %d\n", i);
+  print_matrix(matrix_data, lin, col);
 
   return NULL;
 }

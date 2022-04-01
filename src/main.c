@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
       matrix_copy(matrix_data, matrix_data_aux, lin, col);
       // print_matrix(matrix_data_aux, lin, col);
 
-      int *v = a_star(matrix_data, matrix_data_aux, lin, col, num_colors);
+      int *v = a_star(matrix_data, lin, col, num_colors);
       close_file(board_file);
       //   } else {
       //     error_adj_list();

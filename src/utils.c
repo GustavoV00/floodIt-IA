@@ -33,6 +33,7 @@ struct Graph *create_graph_edges(struct Graph *graph_t, int **matrix, int lin,
 state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
                                 FILE *board_file) {
   int aux;
+  int id = 0;
   for (int i = 0; i < lin; i++) {
     for (int j = 0; j < col; j++) {
       fscanf(board_file, "%d ", &aux);
