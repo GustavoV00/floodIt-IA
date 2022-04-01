@@ -42,6 +42,7 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
       matrix[i][j].lin = i;
       matrix[i][j].col = j;
       matrix[i][j].visited = 0;
+      matrix[i][j].in_board = 0;
     }
   }
   return matrix;

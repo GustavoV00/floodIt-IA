@@ -5,6 +5,8 @@
 #include <assert.h>
 #include <unistd.h>
 
+queue_state_t *removed_items = NULL;
+
 void print_fila(void *ptr) {
   struct queue_state_t *elem = ptr;
 
@@ -20,7 +22,7 @@ bool goal(struct queue_state_t *queue, int tam) {
   int n = queue_size((queue_t *)queue);
   printf("Tamanho fila visited_nodes: %d\n", n);
 
-  if (n != tam)
+  if (n < tam)
     return false;
 
   return true;
@@ -39,7 +41,8 @@ queue_state_t *init_elem(state_t elem, queue_state_t *f) {
 queue_state_t *equals_neighbors(state_t **m, queue_state_t *f, state_t value1,
                                 state_t neighbor) {
   if (value1.value != neighbor.value && value1.value != 0 &&
-      neighbor.value != 0) {
+      neighbor.value != 0 && neighbor.in_board == 0) {
+    neighbor.in_board = 1;
     f = init_elem(neighbor, f);
   }
 
@@ -93,8 +96,8 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
     if (i > 0)
       possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
                                        matrix[i - 1][j]);
+    return possible_next;
   }
-  return possible_next;
 
   if (j == col_max - 1) {
     possible_next =
@@ -112,7 +115,7 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
 }
 
 queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
-                           int lin_max, int col_max, int flag) {
+                           int lin_max, int col_max) {
 
   if (f != NULL) {
     // printf("%d || %d e %d \n", m[i][j].value, i, j);
@@ -131,16 +134,16 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
   }
 
   if (j < col_max - 1)
-    f = find_equals(f, m, i, j + 1, lin_max, col_max, flag);
+    f = find_equals(f, m, i, j + 1, lin_max, col_max);
 
   if (j > 0)
-    f = find_equals(f, m, i, j - 1, lin_max, col_max, flag);
+    f = find_equals(f, m, i, j - 1, lin_max, col_max);
 
   if (i < lin_max - 1)
-    f = find_equals(f, m, i + 1, j, lin_max, col_max, flag);
+    f = find_equals(f, m, i + 1, j, lin_max, col_max);
 
   if (i > 0)
-    f = find_equals(f, m, i - 1, j, lin_max, col_max, flag);
+    f = find_equals(f, m, i - 1, j, lin_max, col_max);
 
   return f;
 }
@@ -186,7 +189,7 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
     new_elem = aux->st;
     new_best = new_elem.g_n +
                calc_heuristic(new_elem.lin, new_elem.col, max_lin, max_col);
-    if (new_best < best) {
+    if (new_best <= best) {
       best_elem = new_elem;
       best = new_best;
     }
@@ -197,17 +200,36 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   return best_elem;
 }
 
-queue_state_t *remove_all_possible_colors(queue_state_t *f) {
+queue_state_t *remove_all_possible_colors(queue_state_t *f,
+                                          state_t next_color) {
   queue_state_t *aux = f;
-  aux = aux->next;
 
-  while (f) {
-    aux = f;
-    // printf("Elemento a ser removido: %d\n", aux->st.value);
-    queue_remove((queue_t **)&f, (queue_t *)aux);
-    assert(fila_correta(f));   // estrutura continua correta
-    assert(aux->prev == NULL); // testa elemento removido
-    assert(aux->next == NULL); // testa elemento removido
+  // while (f) {
+  //   aux = f;
+  //   // printf("Elemento a ser removido: %d\n", aux->st.value);
+  //   queue_remove((queue_t **)&f, (queue_t *)aux);
+  //   assert(fila_correta(f));   // estrutura continua correta
+  //   assert(aux->prev == NULL); // testa elemento removido
+  //   assert(aux->next == NULL); // testa elemento removido
+  // }
+  int n = queue_size((queue_t *)f);
+  int i = 0;
+  while (i < n) {
+
+    if (next_color.value == aux->st.value) {
+      queue_state_t *aux2 = aux;
+      removed_items = init_elem(aux2->st, removed_items);
+      aux = aux->prev;
+      queue_remove((queue_t **)&f, (queue_t *)aux2);
+
+      assert(fila_correta(f));    // estrutura continua correta
+      assert(aux2->prev == NULL); // testa elemento removido
+      assert(aux2->next == NULL); // testa elemento removido
+      free(aux2);
+    }
+
+    i += 1;
+    aux = aux->next;
   }
 
   // printf("Estou aqui\n");
@@ -225,19 +247,35 @@ queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color) {
     j = aux->st.col;
 
     m[i][j].value = color.value;
-    m[i][j].visited = 0;
+    // m[i][j].visited = 0;
     // printf("f[%d][%d]: %d\n", i, j, aux->st.value);
     // printf("Matrix[%d][%d]: %d\n", i, j, m[i][j].value);
     aux = aux->next;
   } while (aux != f);
-  f = init_elem(color, f);
+  // f = init_elem(color, f);
 
   return f;
 }
 
+queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes,
+                                      state_t **matrix_data, int lin, int col) {
+
+  while (removed_items) {
+    queue_state_t *aux = removed_items;
+    queue_state_t *aux2 = visited_nodes;
+    // queue_print("Removed items: ", (queue_t *)removed_items, print_fila);
+    aux = removed_items;
+    visited_nodes =
+        find_equals(aux2, matrix_data, aux->st.lin, aux->st.col, lin, col);
+    queue_remove((queue_t **)&removed_items, (queue_t *)aux);
+    free(aux);
+  }
+  return visited_nodes;
+}
+
 int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
 
-  // print_matrix(matrix_data, lin, col);
+  queue_state_t *destructor = malloc(2 * sizeof(queue_state_t));
   queue_state_t *possible_next = NULL;
   queue_state_t *visited_nodes = NULL;
   int *results = malloc(lin * col * sizeof(int));
@@ -245,29 +283,36 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
 
   queue_state_t *aux = visited_nodes;
   int flag = 1;
-  visited_nodes = find_equals(aux, matrix_data, 0, 0, lin, col, flag);
+  visited_nodes = find_equals(aux, matrix_data, 0, 0, lin, col);
   // visited_nodes = find_equals(aux, matrix_data, 1, 0, lin, col, flag);
 
   queue_print("visited_nodes: ", (queue_t *)visited_nodes, print_fila);
   int i = 0;
+  int n = 7;
   while (!goal(visited_nodes, lin * col)) {
+    // while (i < n) {
     printf("Jogadas: %d\n", i);
 
-    print_matrix(matrix_data, lin, col);
+    // print_matrix(matrix_data, lin, col);
     possible_next =
         search_boards(matrix_data, visited_nodes, lin, col, possible_next);
-    // queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
+    queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
     state_t next_color =
         chose_next_color(possible_next, lin, col, visited_nodes);
     results[i] = next_color.value;
-    // add_next_state_to_board()
-    // printf("NextColor: %d\n", next_color.value);
-    visited_nodes = color_the_board(visited_nodes, matrix_data, next_color);
 
-    possible_next = remove_all_possible_colors(possible_next);
-    // queue_print("visited_nodes: ", (queue_t *)visited_nodes, print_fila);
-    visited_nodes = remove_all_possible_colors(visited_nodes);
-    // queue_print("Colors after remove best color: ", (queue_t *)possible_next,
+    printf("NextColor: %d\n", next_color.value);
+    visited_nodes = color_the_board(visited_nodes, matrix_data, next_color);
+    possible_next = remove_all_possible_colors(possible_next, next_color);
+    visited_nodes =
+        addItemsToVisitedNodes(visited_nodes, matrix_data, lin, col);
+    // queue_print("visited_nodes: ",
+    // (queue_t *)visited_nodes,
+    // print_fila); visited_nodes =
+    // remove_all_possible_colors(visited_nodes);
+    // queue_print("Colors after remove
+    // best color: ", (queue_t
+    // *)possible_next,
     //             print_fila);
 
     // scanf("Text state: %d", &flag);
@@ -276,17 +321,17 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
     // }
 
     // remove_all_possible_colors()
-    // state_t *next_elem = calc_heuristic(possible_next);
-    // print_matrix(matrix_data, lin, col);
-    aux = visited_nodes;
-    visited_nodes = find_equals(aux, matrix_data, 0, 0, lin, col, flag);
-    // queue_print("visited_nodes: : ", (queue_t *)visited_nodes, print_fila);
+    // state_t *next_elem =
+    // calc_heuristic(possible_next);
+    // print_matrix(matrix_data, lin,
+    // col); aux = visited_nodes;
+    queue_print("visited_nodes: : ", (queue_t *)visited_nodes, print_fila);
     i += 1;
-    sleep(1);
+    // sleep(1);
   }
 
   printf("Jogadas totais: %d\n", i);
-  print_matrix(matrix_data, lin, col);
+  // print_matrix(matrix_data, lin, col);
   printf("\n");
   printf("Resultado: \n");
   for (int i = 0; i < lin * col; i++) {
@@ -297,13 +342,3 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
 
   return NULL;
 }
-
-/*
-
-         5 5 4
-   2   │ 4 4 3 2 1
-   3   │ 4 1 1 4 1
-   4   │ 1 4 4 4 3
-   5   │ 4 1 4 4 3
-   6   │ 3 2 3 3 4
- */

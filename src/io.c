@@ -3,7 +3,7 @@
 #include "../include/utils.h"
 
 FILE *open_file(FILE *board_file) {
-  board_file = fopen("tests/exemplo_mapa_5_5_4.txt", "r");
+  board_file = fopen("tests/exemplo_mapa_100_100_10.txt", "r");
   if (board_file)
     return board_file;
 

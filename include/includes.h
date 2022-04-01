@@ -15,6 +15,7 @@ typedef struct state_t {
   int visited;
   int h_n;
   int id;
+  int in_board;
 } state_t;
 
 typedef struct bounds_t {
