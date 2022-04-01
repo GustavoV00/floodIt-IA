@@ -3,21 +3,19 @@
 
 #include "../include/includes.h"
 
-struct node
-{
-	int vertex; // id do nodo
-	int value;
-	int vertex_value;
-	int edges;
-	int is_created;
-	struct node *next;
+struct node {
+  int vertex; // id do nodo
+  int value;
+  int vertex_value;
+  int edges;
+  int is_created;
+  struct node *next;
 };
 
-struct Graph
-{
-	int vertices;
-	int adj_size;
-	struct node **adj_list;
+struct Graph {
+  int vertices;
+  int adj_size;
+  struct node **adj_list;
 };
 
 struct Graph *create_graph();

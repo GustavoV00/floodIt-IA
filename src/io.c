@@ -18,15 +18,11 @@ void read_board_configs(int *board_arr, FILE *f) {
   board_arr[2] = v2;
 }
 
-struct Graph *read_board_data(int lin, int col, FILE *board_file,
-                              struct Graph *graph_t) {
-  int **matrix = aloc_matrix(matrix, lin, col);
+state_t **read_board_data(int lin, int col, FILE *board_file) {
+  state_t **matrix = aloc_matrix(matrix, lin, col);
   matrix = read_matriz_from_file(matrix, lin, col, board_file);
-  // print_matrix(matrix, lin, col);
-
-  graph_t = create_graph_edges(graph_t, matrix, lin, col);
-  desaloc_matrix(matrix, lin, col);
-  return graph_t;
+  // desaloc_matrix(matrix, lin, col);
+  return matrix;
 }
 
 void close_file(FILE *file) { fclose(file); }
