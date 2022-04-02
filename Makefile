@@ -17,7 +17,7 @@ endif
 .PHONY: all clean
 .DEFAULT: all
 
-all: floodit
+all: floodit docs
 
 run:
 	./floodit
@@ -41,3 +41,5 @@ clean:
 	$(AT)-rm -f floodit
 	@echo Removing build directory
 	$(AT)-rm -rf build
+	@echo Removing doxygen directory
+	$(AT)-rm -rf doxygen
