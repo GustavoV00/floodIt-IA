@@ -266,7 +266,6 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   state_t best_elem = aux->st;
   int best = best_elem.g_n +
              calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
-  calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
 
   state_t new_elem;
   int new_best;
