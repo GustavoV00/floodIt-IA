@@ -2,14 +2,12 @@ Trabalho 1 de Inteligência Artificial - 2021-2
 Bruno Eduardo Farias GR20186715 - GUSTAVO VALENTE NUNES GRR20182557
 
 Introdução:
-  O objetivo do trabalho é implementar um algoritimo que resolva um jogo
-  chamado floodit utilizando algum algoritimo inteligente, em nossa estratégia 
-  foi utilizado um algoritimo chamado A*.
+  O objetivo do trabalho é implementar um algoritmo que resolva um jogo chamado floodit utilizando algum algoritmo inteligente, em nossa estratégia foi utilizado um algoritmo chamado A* (a star).
 
 
 Forma de executar:
   make
-  ./floodit < arquivo.in > arquivo.ot
+  ./floodit < arquivo.in > arquivo.out
 
 Estrutura de diretórios: 
   docs: Documentação gerada a partir do doxygen.
@@ -34,42 +32,29 @@ Estrutura de diretórios:
 
 
 Estratégia de desenvolvimento:
-    Recebemos um arquivo de entrada na entrada padrão, e lemos a primeira linha 
-  que seria as dimensões e a quantidade de cores que o tabuleiro terá. Pegamos 
-  essas dimensões e criamos uma matriz. Agora que temos uma matriz criada, como 
-  se fosse o tabuleiro, podemos começar a implementar o A*.
-    Logo no inicio da função a_star(), criamos uma fila chamada "visisted_nodes",
-  que vai nos dizer quais foram os pontos do tabuleiro que já estão cectados com 
-  o inicio. E para encontrar todo o conjunto, é utilizado um algoritimo chamado
-  flood fill. Assim que temos todo o conjunto na fila, podemos procurar os elementos
-  que estão em suas bordas, que serão os possíveis próximos passos. Para isso, 
-  temos uma fila de "possible_next" que indica os elementos que está nas bordas
-  dos pontos já visitados. Como tempos essa lista de possíveis próximos nodos, só 
-  precisamos calcular a heuristica naquele ponto com seu estado atual. 
+    Recebemos um arquivo de entrada na entrada padrão, e lemos a primeira linha que seriam as dimensões e a quantidade de cores que o tabuleiro terá. Pegamos essas dimensões e criamos uma matriz. Agora que temos uma matriz criada, como se fosse o tabuleiro, podemos começar a implementar o A*.
+    Logo no início da função a_star(), criamos uma fila chamada "visisted_nodes", que vai nos dizer quais foram os pontos do tabuleiro que já estão conectados com o início. E para encontrar todo o conjunto, é utilizado um algoritmo chamado flood fill. Assim que temos todo o conjunto na fila, podemos procurar os elementos que estão em suas bordas, que serão os possíveis próximos passos. Para isso, temos uma fila de "possible_next" que indica os elementos que estão nas bordas dos pontos já visitados. Como tempos dessa lista de possíveis próximos nodos, só precisamos calcular a heurística naquele ponto com seu estado atual. 
     Agora é só ficar repetindo esses passos até completar o tabuleiro.
 
-Heuristica e estado:
+Heuristica e custo:
   g(n): O g(n) foi considerado o quão longe o elemento está da raiz, que seria basicamente
         o quão longe, o elemento está do ponto (0,0) na matriz.
 
-  h(n): A nossa heuristica é um linha reta na diagonal, dependendo do ponto pode ser 
-        uma linha reta mesmo. É utilizado o teorema de pitagoras para calcular essa dis-
-        tância. 
-        O ponto de refêrencia é o ponto (max_lin, max_col), o ultimo ponto possivel da matriz,
+  h(n): A nossa heurística é uma linha reta na diagonal, dependendo do ponto pode ser 
+        uma linha reta mesmo. É utilizado o teorema de pitágoras para calcular essa dis-
+        tância. O ponto de refêrencia é o ponto [max_lin, max_col], o último ponto possível da  matriz.
 
 Estruturas utilizadas:
-  Temos uma estrutura gênerica de fila:
+ Temos uma estrutura genérica de fila:
 
     typedef struct queue_t {
       struct queue_t *prev; // aponta para o elemento anterior na fila
       struct queue_t *next; // aponta para o elemento seguinte na fila
     } queue_t;
 
-    Essa estrutura nos permite criar alguma outra estrutra fila qualquer, com qualquer coisa dentro dela,
-    e sempre que eu for fazer alguma chamada para a api da fila, faço um casting para essa struct acima, 
-    conseguindo alocar os elementos sem problema. 
+    Essa estrutura nos permite criar outra struct fila qualquer, com qualquer coisa dentro dela, e sempre que eu for fazer alguma chamada para a API da fila, faço um casting para essa struct acima, conseguindo alocar os elementos sem problema. 
 
-  Estrutura utilizada para o "visisted_nodes" e "possible_next":
+Estrutura utilizada para o "visisted_nodes" e "possible_next":
 
     typedef struct queue_state_t {
       struct queue_state_t *prev;
@@ -77,20 +62,24 @@ Estruturas utilizadas:
       struct state_t st; -> Indica o elemento que está nesse nodo da fila. 
     } queue_state_t;
 
-  Estrutra que a matriz aloca, para cada elemento dela:
-    Temos basicamente uma matrix: m[n][m] com o tipo state_t.
+Utilizo uma estrutura de fila, e sempre que vou fazer uma inserção ou remoção, tenho que fazer o casting para a estrutura de cima (queue_t).
+
+Estrutura que a matriz aloca, para cada elemento dela:
+  Temos basicamente uma matriz: m[n][m] com o tipo state_t.
 
     typedef struct state_t {
       int value;        -> Indica a cor do elemento
-      int g_n;          -> Indica seu estado atual
+      int g_n;          -> Indica seu custo do desde a raiz. 
       int lin;          -> Indica qual linha da matriz ele pertence
       int col;          -> Indica qual coluna da matriz ele pertence
       int f_n;          -> Indica o resultado do g(n) + h(n)
       int visited;      -> Indica se esse nodo já pertence ao "visited_nodes"
-      int h_n;          -> Resultado do pitagóras. 
+      int h_n;          -> Resultado do pitágoras. 
       int id;           -> Indica o id do elemento
       int in_board;     -> Indica se ele já pertence ao "possible_next"
     } state_t;
+
+
 
 
 
