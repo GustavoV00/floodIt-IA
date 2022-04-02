@@ -17,7 +17,7 @@ endif
 .PHONY: all clean
 .DEFAULT: all
 
-all: floodit docs
+all: floodit
 
 run:
 	./floodit
