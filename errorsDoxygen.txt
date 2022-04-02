@@ -1,0 +1,204 @@
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/src/queue.c:6: warning: The following parameter of queue_append(queue_t **queue, queue_t *elem) is not documented:
+  parameter 'queue'
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/src/flood_it.c:233: warning: The following parameters of calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) are not documented:
+  parameter 'max_lin'
+  parameter 'max_col'
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/src/flood_it.c:249: warning: The following parameters of chose_next_color(queue_state_t *possible_next, int max_lin, int max_col, queue_state_t *f) are not documented:
+  parameter 'max_lin'
+  parameter 'max_col'
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/src/flood_it.c:286: warning: The following parameter of remove_all_possible_colors(queue_state_t *f, state_t next_color) is not documented:
+  parameter 'next_color'
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/src/queue.c:6: warning: The following parameter of queue_append(queue_t **queue, queue_t *elem) is not documented:
+  parameter 'queue'
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_legend.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_legend.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_legend.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/main_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/main_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/main_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structnode__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structnode__coll__graph.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structnode__coll__graph.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structGraph__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structGraph__coll__graph.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structGraph__coll__graph.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structbounds__t__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structbounds__t__coll__graph.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structbounds__t__coll__graph.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__state__t__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__state__t__coll__graph.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__state__t__coll__graph.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__t__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__t__coll__graph.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__t__coll__graph.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8c__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8c__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__dep__incl.dot" -Tpng -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__dep__incl.png"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8h__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/error_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8h__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/flood__it_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/graph_8h__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/includes_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/includes_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/includes_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/includes_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/includes_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/includes_8h__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8h__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/io_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/main_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/main_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/main_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structnode__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structnode__coll__graph.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structnode__coll__graph.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/queue_8h__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structbounds__t__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structbounds__t__coll__graph.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structbounds__t__coll__graph.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structGraph__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structGraph__coll__graph.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structGraph__coll__graph.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structqueue__t__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structqueue__t__coll__graph.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structqueue__t__coll__graph.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8h__dep__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8h__dep__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8h__dep__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8c__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8c__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8c__incl.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structqueue__state__t__coll__graph.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structqueue__state__t__coll__graph.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/structqueue__state__t__coll__graph.pdf"'
+
+/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8h__incl.dot:1: error: Problems running dot: exit code=127, command='dot', arguments='"/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8h__incl.dot" -Tpdf -o "/home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/latex/utils_8h__incl.pdf"'
+
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/dir_68267d1309a1af8e8297ef4c3efbcdba_dep.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/error_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/flood__it_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/graph_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/includes_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/io_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/main_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/queue_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structGraph__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structbounds__t__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structnode__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__state__t__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/structqueue__t__coll__graph.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8c__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problems opening map file /home/gvn/Documents/facul/inteligenciaArtificial/floodIt-IA/doxygen/html/utils_8h__dep__incl.map for inclusion in the docs!
+If you installed Graphviz/dot after a previous failing run, 
+try deleting the output directory and rerun doxygen.
+error: problem writing FIG 0 figure!

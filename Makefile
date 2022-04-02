@@ -17,10 +17,13 @@ endif
 .PHONY: all clean
 .DEFAULT: all
 
-all: floodit docs
+all: floodit
 
 run:
-	./floodit
+	./floodit > ./tests/exemplo_solucao_100_100_10.txt
+
+anima:
+	cat ./tests/exemplo_mapa_100_100_10.txt ./tests/exemplo_solucao_100_100_10.txt | ./tests/anima
 
 floodit: $(O_FILES)
 	$(V_CC) -o $@ $^

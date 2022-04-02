@@ -1,6 +1,6 @@
-//TRAB1 IA - 2021-2
-//GUSTAVO VALENTE NUNES GRR20182557
-//BRUNO EDUARDO FARIAS GRR20186715
+// TRAB1 IA - 2021-2
+// GUSTAVO VALENTE NUNES GRR20182557
+// BRUNO EDUARDO FARIAS GRR20186715
 
 #include "../include/includes.h"
 #include "../include/queue.h"
@@ -266,6 +266,7 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   state_t best_elem = aux->st;
   int best = best_elem.g_n +
              calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
+  calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
 
   state_t new_elem;
   int new_best;
@@ -424,10 +425,9 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
     // sleep(1);
   }
 
-  printf("Jogadas totais: %d\n", i);
+  printf("%d\n", i);
   // print_matrix(matrix_data, lin, col);
-  printf("\n");
-  printf("Resultado: \n");
+  // printf("Resultado: \n");
   for (int i = 0; i < lin * col; i++) {
     if (results[i] != 0)
       printf("%d ", results[i]);
