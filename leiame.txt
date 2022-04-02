@@ -6,6 +6,33 @@ Introdução:
   chamado floodit utilizando algum algoritimo inteligente, em nossa estratégia 
   foi utilizado um algoritimo chamado A*.
 
+
+Forma de executar:
+  make
+  ./floodit < arquivo.in > arquivo.ot
+
+Estrutura de diretórios: 
+  docs: Documentação gerada a partir do doxygen.
+    -> Para gerar a documentação é necessário fazer um make docs.
+
+  src: Contém todos os arquivos do tipo *.c.
+    flood_it.c: Contém a parte principal do código, onde está implementando o A*.
+    io.c: Cuida da parte de input e saída de dados. 
+    utils.c: Cuida da alocação de matriz, e algumas outras coisas a mais. 
+    queue.c: Implementação de uma api de fila, insere, remove, calcula tamanho e imprime a fila. 
+    main.c: Arquivo que contém a main do código. 
+     
+  includes: Contém todos os arquivos do tipo *.h
+    flood_it.h: Prototipo das funções do flood_it.c.
+    io.h: Prototipo das funções do io.c.
+    utils.h: Prototipo das funções do utils.c.
+    queue.h: Prototipo das funções do queue.c.
+
+
+  build: Contém todos os arquivos objetos após a compilação.
+  tests: Contém todos os arquivos de testes utilizados no código.
+
+
 Estratégia de desenvolvimento:
     Recebemos um arquivo de entrada na entrada padrão, e lemos a primeira linha 
   que seria as dimensões e a quantidade de cores que o tabuleiro terá. Pegamos 
@@ -67,22 +94,3 @@ Estruturas utilizadas:
 
 
 
-Estrutura de diretórios: 
-  docs: Documentação gerada a partir do doxygen.
-
-  src: Contém todos os arquivos do tipo *.c.
-    flood_it.c: Contém a parte principal do código, onde está implementando o A*.
-    io.c: Cuida da parte de input e saída de dados. 
-    utils.c: Cuida da alocação de matriz, e algumas outras coisas a mais. 
-    queue.c: Implementação de uma api de fila, insere, remove, calcula tamanho e imprime a fila. 
-    main.c: Arquivo que contém a main do código. 
-     
-  includes: Contém todos os arquivos do tipo *.h
-    flood_it.h: Prototipo das funções do flood_it.c.
-    io.h: Prototipo das funções do io.c.
-    utils.h: Prototipo das funções do utils.c.
-    queue.h: Prototipo das funções do queue.c.
-
-
-  build: Contém todos os arquivos objetos após a compilação.
-  tests: Contém todos os arquivos de testes utilizados no código.
