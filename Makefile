@@ -20,7 +20,7 @@ endif
 all: floodit
 
 run:
-	./floodit < tests/exemplo_mapa_100_100_10.txt > ./tests/exemplo_solucao_100_100_10.txt
+	./floodit
 
 anima:
 	cat ./tests/exemplo_mapa_100_100_10.txt ./tests/exemplo_solucao_100_100_10.txt | ./tests/anima
