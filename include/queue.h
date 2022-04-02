@@ -5,9 +5,11 @@
 #ifndef __QUEUE__
 #define __QUEUE__
 
+/*
 #ifndef NULL
 #define NULL ((void *)0)
 #endif
+*/
 
 #include "../include/includes.h"
 

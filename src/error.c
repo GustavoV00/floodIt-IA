@@ -14,7 +14,3 @@ void error_when_open_file(FILE *f) {
   printf("Error when open file!");
 }
 
-/** Print error on graphs */
-//void error_graph() { printf("Error to create graph!"); }
-
-//void error_adj_list() { printf("Error to create adj_list!\n"); }
