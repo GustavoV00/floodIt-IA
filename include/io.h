@@ -1,7 +1,10 @@
+//TRAB1 IA - 2021-2
+//GUSTAVO VALENTE NUNES GRR20182557
+//BRUNO EDUARDO FARIAS GRR20186715
+
 #ifndef __IO__
 #define __IO__
 
-#include "graph.h"
 #include "includes.h"
 
 FILE *open_file();

@@ -1,9 +1,6 @@
-// PingPongOS - PingPong Operating System
-// Prof. Carlos A. Maziero, DINF UFPR
-// Versão 1.1 -- Abril de 2021
-// Definição e operações em uma fila genérica.
-
-// ESTE ARQUIVO NÃO DEVE SER MODIFICADO - ELE SERÁ SOBRESCRITO NOS TESTES
+//TRAB1 IA - 2021-2
+//GUSTAVO VALENTE NUNES GRR20182557
+//BRUNO EDUARDO FARIAS GRR20186715
 
 #ifndef __QUEUE__
 #define __QUEUE__
