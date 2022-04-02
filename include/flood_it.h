@@ -20,5 +20,6 @@ queue_state_t *remove_all_possible_colors(queue_state_t *f, state_t next_color);
 queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color);
 queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes, state_t **matrix_data, int lin, int col);
 int *a_star(state_t **matrix_data, int lin, int col, int num_colors);
+void print_final_result(int qtdMoves, int *results, int lin, int col);
 
 #endif
