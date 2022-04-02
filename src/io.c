@@ -10,7 +10,7 @@
  * @param[in] board_file Board file
  */
 FILE *open_file(FILE *board_file) {
-  board_file = fopen("tests/exemplo_mapa_100_100_10.txt", "r");
+  board_file = stdin;
   if (board_file)
     return board_file;
 
