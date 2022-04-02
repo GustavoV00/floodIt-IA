@@ -231,8 +231,8 @@ queue_state_t *search_boards(state_t **matrix, queue_state_t *visited_nodes,
  *
  * @param[in] elem_i Row of elem
  * @param[in] elem_j Column of elem
- * @param[in] lin Number of lines
- * @param[in] col Number of colums
+ * @param[in] max_lin Number of lines
+ * @param[in] max_col Number of colums
  *
  */
 int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) {
@@ -246,8 +246,8 @@ int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) {
  * Chooses (using a heurist funcion and total cost) the next color
  *
  * @param[in] possible_next Queue of next possible options
- * @param[in] lin_max Quantity of board lines
- * @param[in] col_max Quantity of board columns
+ * @param[in] max_lin Quantity of board lines
+ * @param[in] max_col Quantity of board columns
  * @param[in] f Queue of visited nodes
  */
 
@@ -280,7 +280,8 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
 /**
  * Clears the queue
  *
- * @param[in] f Queue to be cleared
+ * @param[in] f Queue to be cleared 
+ * @param[in] next_color Next color state to ble cleared
  */
 queue_state_t *remove_all_possible_colors(queue_state_t *f,
                                           state_t next_color) {

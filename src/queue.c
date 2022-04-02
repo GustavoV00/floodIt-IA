@@ -9,7 +9,7 @@
 /**
 * Appends a element to the queue
 *
-* @param[in] f Queue of elements
+* @param[in] queue Queue of elements
 * @param[in] elem The elem to be appended to the queue
 */
 int queue_append(queue_t **queue, queue_t *elem) {
