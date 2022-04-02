@@ -1,6 +1,6 @@
-//TRAB1 IA - 2021-2
-//GUSTAVO VALENTE NUNES GRR20182557
-//BRUNO EDUARDO FARIAS GRR20186715
+// TRAB1 IA - 2021-2
+// GUSTAVO VALENTE NUNES GRR20182557
+// BRUNO EDUARDO FARIAS GRR20186715
 
 #ifndef __INCLUDES__
 #define __INCLUDES__
@@ -21,12 +21,6 @@ typedef struct state_t {
   int id;
   int in_board;
 } state_t;
-
-typedef struct bounds_t {
-  struct bounds_t *prev;
-  struct bounds_t *next;
-  struct state_t st;
-} bouds_t;
 
 typedef struct queue_state_t {
   struct queue_state_t *prev;
