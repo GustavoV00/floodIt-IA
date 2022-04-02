@@ -18,27 +18,6 @@ state_t **aloc_matrix(state_t **matrix, int lin, int col) {
   return matrix;
 }
 
-/*
-struct Graph *create_graph_edges(struct Graph *graph_t, int **matrix, int lin,
-                                 int col) {
-  int vertice = 0;
-  for (int i = 0; i < lin; i++) {
-    for (int j = 0; j < col; j++) {
-      if (j < col - 1)
-        add_edge(graph_t, vertice, vertice + 1, matrix[i][j + 1], matrix[i][j]);
-
-      if (i < lin - 1)
-        add_edge(graph_t, vertice, vertice + col, matrix[i + 1][j],
-                 matrix[i][j]);
-      // 1][j]);
-      vertice += 1;
-    }
-  }
-
-  return graph_t;
-}
-*/
-
 /**
  * Reads the matrix from the file
  * @param[in] matrix
