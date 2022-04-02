@@ -2,24 +2,29 @@
 #include "../include/includes.h"
 #include <stdio.h>
 
+/**
+* Appends a element to the queue
+*
+* @param[in] f Queue of elements
+* @param[in] elem The elem to be appended to the queue
+*/
 int queue_append(queue_t **queue, queue_t *elem) {
 
-  // Verifica se o elemento existe
+  //verify if the element exists
   if (elem != NULL) {
-    // Verifica se o elemento ta na fila correta.
+    //verify if the element is in the right queue
     if (elem->next == NULL && elem->prev == NULL) {
-      // Caso a fila tenha tamanho 0, insere no primeiro elemento.
+      //if there's no elements in the queue -> adds as the first one
       if (*queue == NULL) {
 
-        // Faz a fila apontar para o primeiro elemento.
+        //queue points to first element
         (*queue) = elem;
         (*queue)->next = elem;
         (*queue)->prev = elem;
 
-        // Insere qualquer outro elemento.
       } else {
 
-        // Arruma os ponteiros.
+        //fix pointers
         (*queue)->prev->next = elem;
         elem->next = *queue;
         elem->prev = (*queue)->prev;
@@ -27,13 +32,23 @@ int queue_append(queue_t **queue, queue_t *elem) {
       }
       return 0;
     } else
-      printf("Erro: Elemento já está inserido ou está na fila incorreta\n");
-  } else
-    printf("Erro: Elemento não existe\n");
+      //printf("Erro: Elemento já está inserido ou está na fila incorreta\n");
+      perror("Error: element is already on a queue or wrong queue!");
+  } else {
+    //printf("Erro: Elemento não existe\n");
+    perror("Error: element doesn't exists!");
+  }
 
   return -1;
 }
 
+/**
+* Prints the elements in the queue
+*
+* @param[in] name Name of the queue
+* @param[in] queue The queue to be printed
+* @param[in] print_elem Function to print a elem
+*/
 void queue_print(char *name, queue_t *queue, void (*print_elem)(void *)) {
   queue_t *aux = queue;
 
@@ -55,24 +70,29 @@ void queue_print(char *name, queue_t *queue, void (*print_elem)(void *)) {
   return;
 }
 
+/**
+* Remove the element elem from the queue
+*
+* @param[in] queue Queue of elements
+* @param[in] elem The elem to be removed from the queue
+*/
 int queue_remove(queue_t **queue, queue_t *elem) {
   queue_t **aux = queue, *first = *queue;
 
-  // Verifica se o elemento existe
+  //verift if the element exists
   if (elem != NULL) {
-    // Confirma que a fila existe
+    //verify that the queue exists
     if (elem->next != NULL && elem->prev != NULL) {
 
       if (*queue != NULL) {
         if (*aux == elem) {
           switch (queue_size(*queue)) {
-          // Remove o primeiro elemento, com a fila de um único elemento
+          //remove the first (and only) element of the queue
           case 1:
             *queue = NULL;
             break;
 
-          // Remove o primeiro elemento, para quando a fila tem mais de um
-          // elemento
+          //remove the element when the queue has more than one element
           default:
             (*queue)->next->prev = (*queue)->prev;
             (*queue)->prev->next = (*queue)->next;
@@ -80,18 +100,17 @@ int queue_remove(queue_t **queue, queue_t *elem) {
             break;
           }
         }
-        // Remove o segundo ou ultimo elemento.
+        //removes the second or the last element
         else {
-          // Verifica se remove o ultimo elemento ou o segundo
-          // Remove o ultimo elemento
+          //removes the last element
           if ((*aux)->prev == elem)
             *aux = (*aux)->prev;
           else {
-            // Remove o segundo elemento
-            // Verifica se o elemento pertece a fila correta.
+            //removes the second element
             while ((*aux = (*aux)->next) != elem) {
               if (*aux == first) {
-                printf("Erro: Elemento não pertence a está fila\n");
+                //printf("Erro: Elemento não pertence a está fila\n");
+                perror("Error: The element doesn't belong to this queue!");
                 return -1;
               }
             }
@@ -107,15 +126,24 @@ int queue_remove(queue_t **queue, queue_t *elem) {
         return 0;
 
       } else
-        printf("Erro: Fila não existe\n");
+        //printf("Erro: Fila não existe\n");
+        perror("Error: queue doesn't exists!");
     } else
-      printf("Erro: Elemento não está em nenhuma fila.\n");
-  } else
-    printf("Erro: Elemento não existe\n");
+      //printf("Erro: Elemento não está em nenhuma fila.\n");
+      perror("Error: element isn't inside a queue!");
+  } else {
+    //printf("Erro: Elemento não existe\n");
+    perror("Error: element doesn't exists!");
+  }
 
   return -1;
 }
 
+/**
+* Returns the size of a queue
+*
+* @param[in] queue Queue of elements
+*/
 int queue_size(queue_t *queue) {
   queue_t *aux = queue;
 
@@ -130,44 +158,52 @@ int queue_size(queue_t *queue) {
   }
 }
 
+
+/**
+* Verifies if a queue is correct
+*
+* @param[in] fila Queue of elements
+*/
 int fila_correta(queue_state_t *fila) {
   queue_state_t *aux;
 
-  // uma fila vazia sempre está correta
+  //a empty queue is always correct
   if (!fila)
     return 1;
 
-  // fila com um só elemento e correta
+  //a queue with only one element is correct
   if ((fila->next == fila) && (fila->prev == fila))
     return 1;
 
-  // fila com um só elemento, mas incorreta
+  //queue with only one element but incorrect
   if ((fila->next == fila) || (fila->prev == fila)) {
     printf("ERRO: ponteiros errados na fila com um elemento\n");
     return 0;
   }
 
-  // fila com mais elementos, percorrer e testar todos os ponteiros
+  //if the queue has more than one: go through and check one by one
   aux = fila;
   do {
-    // testa ponteiro next (avaliação em curto-circuito)
+    //tests next pointer
     if (aux->next && (aux->next->prev == aux))
       ; // ponteiro ok
     else {
-      printf("ERRO: ponteiros errados ->next ou ->next->prev\n");
+      //printf("ERRO: ponteiros errados ->next ou ->next->prev\n");
+      perror("Error: wrong pointers ->next or ->next->prev");
       return 0;
     }
 
-    // testa ponteiro prev (avaliação em curto-circuito)
+    //tests prev pointer
     if (aux->prev && (aux->prev->next == aux))
       ; // ponteiro ok
     else {
-      printf("ERRO: ponteiros errados ->prev ou ->prev->next\n");
+      //printf("ERRO: ponteiros errados ->prev ou ->prev->next\n");
+      perror("Error: wrong pointers ->prev or ->prev->next");
       return 0;
     }
     aux = aux->next;
   } while (aux != fila);
 
-  // passou por tudo, estrutura da fila parece estar ok
+  // returns 1 if ok
   return 1;
 }

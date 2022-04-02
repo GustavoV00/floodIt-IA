@@ -5,6 +5,7 @@
  * if exist, return the graph
  * if not exist, return NULL and exist the program
  */
+/*
 struct Graph *create_graph()
 {
 	struct Graph *graph = malloc(sizeof(struct Graph));
@@ -13,12 +14,14 @@ struct Graph *create_graph()
 
 	return graph;
 }
+*/
 
 /*
  * Inicialize the data, and fill with it
  * graph_t -> vertices: Is the vertices
  * graph_t -> adj_list: Is the adjacesnte list (All the initial data is NULL).
  */
+/*
 struct Graph *init_graph_values(int vertices, struct Graph *graph_t)
 {
 	graph_t->vertices = vertices;
@@ -35,10 +38,12 @@ struct Graph *init_graph_values(int vertices, struct Graph *graph_t)
 
 	return graph_t;
 }
+*/
 
 /*
  * We create a node, and return the node;
  */
+/*
 struct node *create_node(int v, int value1, int value2, int color)
 {
 	struct node *new_node_t = malloc(sizeof(struct node));
@@ -49,7 +54,9 @@ struct node *create_node(int v, int value1, int value2, int color)
 	new_node_t->next = NULL;
 	return new_node_t;
 }
+*/
 
+/*
 bool has_edge(struct Graph *graph_t, int src, int dest)
 {
 	struct node *node_t = graph_t->adj_list[src];
@@ -63,12 +70,14 @@ bool has_edge(struct Graph *graph_t, int src, int dest)
 
 	return false;
 }
+*/
 
 /*
  * Connect to nodes.
  * A -> B
  * B -> A
  */
+/*
 void add_edge(struct Graph *graph_t, int src, int dest, int value1,
 			  int value2)
 {
@@ -88,10 +97,12 @@ void add_edge(struct Graph *graph_t, int src, int dest, int value1,
 	graph_t->adj_list[dest] = new_node_t;
 	new_node_t->edges += 1;
 }
+*/
 
 /*
  * Print the graph
  */
+/*
 void print_graph(struct Graph *graph_t)
 {
 	int v;
@@ -117,10 +128,12 @@ void print_graph(struct Graph *graph_t)
 		printf("\n\n");
 	}
 }
+*/
 
 /*
  * Free all graph nodes
  */
+/*
 void destroy_graph(struct Graph *graph_t)
 {
 	for (int i = 0; i < graph_t->vertices; i++)
@@ -129,3 +142,4 @@ void destroy_graph(struct Graph *graph_t)
 	}
 	free(graph_t->adj_list);
 }
+*/

@@ -17,13 +17,16 @@ endif
 .PHONY: all clean
 .DEFAULT: all
 
-all: floodit
+all: floodit docs
 
 run:
 	./floodit
 
 floodit: $(O_FILES)
 	$(V_CC) -o $@ $^
+
+docs:
+	doxygen configDoxygen
 
 build:
 	@mkdir -p build
