@@ -1,4 +1,3 @@
-Trabalho 1
 Implementar um programa em C que  recebe como entrada uma instância do
 jogo Floodit e que gera como saída  uma sequência de cores que pinta o
 tabuleiro todo com uma única cor.
@@ -6,6 +5,10 @@ tabuleiro todo com uma única cor.
 
 Especificação:
 ==============
+Implementar um programa em C que  recebe como entrada uma instância do
+jogo Floodit e que gera como saída  uma sequência de cores que pinta o
+tabuleiro todo com uma única cor.
+
 O seu programa deve receber uma  instância do jogo a partir da entrada
 padrão do sistema.
 
