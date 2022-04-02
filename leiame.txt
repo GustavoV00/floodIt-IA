@@ -1,0 +1,18 @@
+Trabalho 1 de Inteligência Artificial - 2021-2
+Bruno Eduardo Farias GR20186715 - GUSTAVO VALENTE NUNES GRR20182557
+
+O trabalho consiste em implementar uma solução para o jogo FloodIt:
+
+1) Recebe os dados de um tabuleiro através da entrada padrão (stdin)
+2) Resolve o tabuleiro utilizando A* e a heurística:
+
+Heurística:
+
+A heurística se baseia em avaliar a diagonal calculando a distância euclidiana até o canto inferior direito do tabuleiro.
+
+G(n) é custo total acumulado desde o início da execução.
+
+Estruturas utilizadas:
+
+Queue: implementação de fila duplamente encadeada
+Matriz
