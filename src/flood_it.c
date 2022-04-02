@@ -7,6 +7,11 @@
 
 queue_state_t *removed_items = NULL;
 
+/**
+* Function to print a queue node 
+*
+* @param[in] ptr Pointer to node
+*/
 void print_fila(void *ptr) {
   struct queue_state_t *elem = ptr;
 
@@ -18,6 +23,12 @@ void print_fila(void *ptr) {
   elem->prev ? printf("%d", elem->next->st.value) : printf("*");
 }
 
+/**
+* Verify if the state is a goal: every node/cell has the same color
+*
+* @param[in] queue Queue of elements
+* @param[in] tam Quantity of elements
+*/
 bool goal(struct queue_state_t *queue, int tam) {
   int n = queue_size((queue_t *)queue);
   printf("Tamanho fila visited_nodes: %d\n", n);
@@ -28,6 +39,12 @@ bool goal(struct queue_state_t *queue, int tam) {
   return true;
 }
 
+/**
+* Allocate a new elemento to the queue of states
+*
+* @param[in] elem The elem to be appended to the list
+* @param[in] f Queue of elements
+*/
 queue_state_t *init_elem(state_t elem, queue_state_t *f) {
   queue_state_t *root_elem = (queue_state_t *)malloc(sizeof(queue_state_t));
   root_elem->prev = NULL;
@@ -38,6 +55,14 @@ queue_state_t *init_elem(state_t elem, queue_state_t *f) {
   return f;
 }
 
+/**
+* Verifies if the value1 and neighbor have the same color
+*
+* @param[in] m The data matrix
+* @param[in] f Queue of next possible options
+* @param[in] value1 Actual node
+* @param[in] neighbor Neighbor node
+*/
 queue_state_t *equals_neighbors(state_t **m, queue_state_t *f, state_t value1,
                                 state_t neighbor) {
   if (value1.value != neighbor.value && value1.value != 0 &&
@@ -49,7 +74,15 @@ queue_state_t *equals_neighbors(state_t **m, queue_state_t *f, state_t value1,
   return f;
 }
 
-// VERIFICA OS VIZINHOS
+/**
+* Verify the neighborhood 
+*
+* @param[in] elem Element to search neighborhood
+* @param[in] lin_max Quantity of board lines
+* @param[in] col_max Quantity of board columns
+* @param[in] matrix The data matrix
+* @param[in] possible_next Queue of next possible options
+*/
 queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
                                 state_t **matrix,
                                 queue_state_t *possible_next) {
@@ -114,6 +147,17 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
   return possible_next;
 }
 
+/**
+* Finds cells that have the same color as the color of M[i,j]
+*
+* @param[in] f Queue of visited nodes
+* @param[in] m The matrix
+* @param[in] i Line to be verified
+* @param[in] j Line to be verified
+* @param[in] lin_max Quantity of board lines
+* @param[in] col_max Quantity of board columns
+* @param[in] flag Quantity of board columns
+*/
 queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
                            int lin_max, int col_max) {
 
@@ -148,6 +192,15 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
   return f;
 }
 
+/**
+* Search for the border (next possible choices)
+*
+* @param[in] matrix The matrix
+* @param[in] visited_nodes The queue of visited nodes
+* @param[in] lin Number of lines
+* @param[in] col Number of colums
+* @param[in] possible_next Queue of possible next choices
+*/
 queue_state_t *search_boards(state_t **matrix, queue_state_t *visited_nodes,
                              int lin, int col, queue_state_t *possible_next) {
   queue_state_t *aux = visited_nodes;
@@ -165,6 +218,15 @@ queue_state_t *search_boards(state_t **matrix, queue_state_t *visited_nodes,
   return possible_next;
 }
 
+/**
+* Calculates the heuristic funcion: pythagoras theorem 
+*
+* @param[in] elem_i Row of elem
+* @param[in] elem_j Column of elem
+* @param[in] lin Number of lines
+* @param[in] col Number of colums
+*
+*/
 int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) {
   int side1 = max_col - elem_j;
   int side2 = max_lin - elem_i;
@@ -172,6 +234,14 @@ int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) {
   return result;
 }
 
+/**
+* Chooses (using a heurist funcion and total cost) the next color
+*
+* @param[in] possible_next Queue of next possible options
+* @param[in] lin_max Quantity of board lines
+* @param[in] col_max Quantity of board columns
+* @param[in] f Queue of visited nodes
+*/
 state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
                          queue_state_t *f) {
   printf("\n");
@@ -200,6 +270,11 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   return best_elem;
 }
 
+/**
+* Clears the queue
+*
+* @param[in] f Queue to be cleared
+*/
 queue_state_t *remove_all_possible_colors(queue_state_t *f,
                                           state_t next_color) {
   queue_state_t *aux = f;
@@ -236,6 +311,13 @@ queue_state_t *remove_all_possible_colors(queue_state_t *f,
   return f;
 }
 
+/**
+* Paints the board with color
+*
+* @param[in] f Queue of visited nodes
+* @param[in] m Matrix data
+* @param[in] color Element that has the color to paint the board
+*/
 queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color) {
   queue_state_t *aux = f;
 
@@ -257,6 +339,14 @@ queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color) {
   return f;
 }
 
+/**
+* Add itens to a queue of visited nodes
+*
+* @param[in] visited_nodes Queue of visited nodes
+* @param[in] matrix_data Matrix data
+* @param[in] lin Number of lines
+* @param[in] col Number of colums
+*/
 queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes,
                                       state_t **matrix_data, int lin, int col) {
 
@@ -273,6 +363,14 @@ queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes,
   return visited_nodes;
 }
 
+/**
+* Performs A* algorithm
+*
+* @param[in] matrix_data The matrix of data
+* @param[in] lin Number of lines
+* @param[in] col Number of colums
+* @param[in] num_colors Number of colors
+*/
 int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
 
   queue_state_t *destructor = malloc(2 * sizeof(queue_state_t));
