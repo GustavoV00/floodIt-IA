@@ -1,6 +1,7 @@
 Implementar um programa em C que  recebe como entrada uma instância do
 jogo Floodit e que gera como saída  uma sequência de cores que pinta o
-tabuleiro todo com uma única cor.
+tabuleiro todo com uma única cor. Para Informações de implementação, 
+leia o leiame.txt
 
 
 Especificação:
