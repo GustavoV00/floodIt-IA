@@ -10,7 +10,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct state_t {
+#define QUAD 4
+#define QUAD_A 0
+#define QUAD_B 1
+#define QUAD_C 2
+#define QUAD_D 3
+
+typedef struct state_t
+{
   int value;
   int g_n;
   int lin;
@@ -20,9 +27,11 @@ typedef struct state_t {
   int h_n;
   int id;
   int in_board;
+  int quadrant;
 } state_t;
 
-typedef struct queue_state_t {
+typedef struct queue_state_t
+{
   struct queue_state_t *prev;
   struct queue_state_t *next;
   struct state_t st;

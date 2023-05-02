@@ -1,5 +1,5 @@
-Trabalho 1 de Inteligência Artificial - 2021-2
-Bruno Eduardo Farias GR20186715 - GUSTAVO VALENTE NUNES GRR20182557
+Trabalho 1 de Inteligência Artificial - 2023
+GUSTAVO VALENTE NUNES GRR20182557
 
 Introdução:
   O objetivo do trabalho é implementar um algoritmo que resolva um jogo chamado floodit utilizando algum algoritmo inteligente, em nossa estratégia foi utilizado um algoritmo chamado A* (a star).

@@ -15,7 +15,8 @@ queue_state_t *removed_items = NULL;
  *
  * @param[in] ptr Pointer to node
  */
-void print_fila(void *ptr) {
+void print_fila(void *ptr)
+{
   struct queue_state_t *elem = ptr;
 
   if (!elem)
@@ -32,7 +33,8 @@ void print_fila(void *ptr) {
  * @param[in] queue Queue of elements
  * @param[in] tam Quantity of elements
  */
-bool goal(struct queue_state_t *queue, int tam) {
+bool goal(struct queue_state_t *queue, int tam)
+{
   int n = queue_size((queue_t *)queue);
   // printf("Tamanho fila visited_nodes: %d\n", n);
 
@@ -48,7 +50,8 @@ bool goal(struct queue_state_t *queue, int tam) {
  * @param[in] elem The elem to be appended to the list
  * @param[in] f Queue of elements
  */
-queue_state_t *init_elem(state_t elem, queue_state_t *f) {
+queue_state_t *init_elem(state_t elem, queue_state_t *f)
+{
   queue_state_t *root_elem = (queue_state_t *)malloc(sizeof(queue_state_t));
   root_elem->prev = NULL;
   root_elem->next = NULL;
@@ -67,10 +70,12 @@ queue_state_t *init_elem(state_t elem, queue_state_t *f) {
  * @param[in] neighbor Neighbor node
  */
 queue_state_t *equals_neighbors(state_t **m, queue_state_t *f, state_t value1,
-                                state_t neighbor) {
+                                state_t neighbor)
+{
   if (value1.value != neighbor.value && value1.value != 0 &&
-      neighbor.value != 0 && neighbor.in_board == 0) {
-    
+      neighbor.value != 0 && neighbor.in_board == 0)
+  {
+
     int i = neighbor.lin;
     int j = neighbor.col;
     m[i][j].in_board = 1;
@@ -91,10 +96,12 @@ queue_state_t *equals_neighbors(state_t **m, queue_state_t *f, state_t value1,
  */
 queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
                                 state_t **matrix,
-                                queue_state_t *possible_next) {
+                                queue_state_t *possible_next)
+{
   int i = elem.lin;
   int j = elem.col;
-  if (i > 0 && j > 0 && j < col_max - 1 && i < lin_max - 1) {
+  if (i > 0 && j > 0 && j < col_max - 1 && i < lin_max - 1)
+  {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
@@ -109,7 +116,8 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
     return possible_next;
   }
 
-  if (i == 0) {
+  if (i == 0)
+  {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
@@ -121,7 +129,8 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
     return possible_next;
   }
 
-  if (i == lin_max - 1) {
+  if (i == lin_max - 1)
+  {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
@@ -132,7 +141,8 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
                                        matrix[i][j - 1]);
     return possible_next;
   }
-  if (j == 0) {
+  if (j == 0)
+  {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
@@ -144,7 +154,8 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
     return possible_next;
   }
 
-  if (j == col_max - 1) {
+  if (j == col_max - 1)
+  {
     possible_next =
         equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 1]);
 
@@ -172,16 +183,23 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
  * @param[in] flag Quantity of board columns
  */
 queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
-                           int lin_max, int col_max) {
+                           int lin_max, int col_max)
+{
 
-  if (f != NULL) {
-    if (m[i][j].value == f->st.value && m[i][j].visited == 0) {
+  if (f != NULL)
+  {
+    if (m[i][j].value == f->st.value && m[i][j].visited == 0)
+    {
       f = init_elem(m[i][j], f);
       m[i][j].visited = 1;
-    } else {
+    }
+    else
+    {
       return f;
     }
-  } else {
+  }
+  else
+  {
     f = init_elem(m[i][j], f);
     m[i][j].visited = 1;
   }
@@ -211,10 +229,12 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
  * @param[in] possible_next Queue of possible next choices
  */
 queue_state_t *search_boards(state_t **matrix, queue_state_t *visited_nodes,
-                             int lin, int col, queue_state_t *possible_next) {
+                             int lin, int col, queue_state_t *possible_next)
+{
   queue_state_t *aux = visited_nodes;
 
-  do {
+  do
+  {
     state_t elem = aux->st;
 
     // Procura no [i][j+1], [i+1][j], etc...
@@ -235,7 +255,8 @@ queue_state_t *search_boards(state_t **matrix, queue_state_t *visited_nodes,
  * @param[in] max_col Number of colums
  *
  */
-int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) {
+int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col)
+{
   int side1 = max_col - elem_j;
   int side2 = max_lin - elem_i;
   int result = (side1 * side1) + (side2 * side2);
@@ -252,7 +273,8 @@ int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col) {
  */
 
 state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
-                         queue_state_t *f) {
+                         queue_state_t *f)
+{
 
   queue_state_t *aux = possible_next;
 
@@ -263,11 +285,13 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   state_t new_elem;
   int new_best;
   aux = aux->next;
-  do {
+  do
+  {
     new_elem = aux->st;
     new_best = new_elem.g_n +
                calc_heuristic(new_elem.lin, new_elem.col, max_lin, max_col);
-    if (new_best <= best) {
+    if (new_best <= best)
+    {
       best_elem = new_elem;
       best = new_best;
     }
@@ -280,18 +304,21 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
 /**
  * Clears the queue
  *
- * @param[in] f Queue to be cleared 
+ * @param[in] f Queue to be cleared
  * @param[in] next_color Next color state to ble cleared
  */
 queue_state_t *remove_all_possible_colors(queue_state_t *f,
-                                          state_t next_color) {
+                                          state_t next_color)
+{
   queue_state_t *aux = f;
 
   int n = queue_size((queue_t *)f);
   int i = 0;
-  while (i < n) {
+  while (i < n)
+  {
 
-    if (next_color.value == aux->st.value) {
+    if (next_color.value == aux->st.value)
+    {
       queue_state_t *aux2 = aux;
       removed_items = init_elem(aux2->st, removed_items);
       aux = aux->prev;
@@ -317,12 +344,14 @@ queue_state_t *remove_all_possible_colors(queue_state_t *f,
  * @param[in] m Matrix data
  * @param[in] color Element that has the color to paint the board
  */
-queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color) {
+queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color)
+{
   queue_state_t *aux = f;
 
   int i;
   int j;
-  do {
+  do
+  {
     aux->st.value = color.value;
     i = aux->st.lin;
     j = aux->st.col;
@@ -343,9 +372,11 @@ queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color) {
  * @param[in] col Number of colums
  */
 queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes,
-                                      state_t **matrix_data, int lin, int col) {
+                                      state_t **matrix_data, int lin, int col)
+{
 
-  while (removed_items) {
+  while (removed_items)
+  {
     queue_state_t *aux = removed_items;
     queue_state_t *aux2 = visited_nodes;
     // queue_print("Removed items: ", (queue_t *)removed_items, print_fila);
@@ -359,19 +390,21 @@ queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes,
 }
 
 /**
-* Print result as requested
-*
-* @param[in] qtdMoves Quantity of steps
-* @param[in] results Array of colors changed
-* @param[in] lin Number of lines
-* @param[in] col Number of colums
-*/
-void print_final_result(int qtdMoves, int *results, int lin, int col){
+ * Print result as requested
+ *
+ * @param[in] qtdMoves Quantity of steps
+ * @param[in] results Array of colors changed
+ * @param[in] lin Number of lines
+ * @param[in] col Number of colums
+ */
+void print_final_result(int qtdMoves, int *results, int lin, int col)
+{
   printf("%d\n", qtdMoves);
-    for (int i = 0; i < lin * col; i++) {
-      if (results[i] != 0)
-        printf("%d ", results[i]);
-    }
+  for (int i = 0; i < lin * col; i++)
+  {
+    if (results[i] != 0)
+      printf("%d ", results[i]);
+  }
   printf("\n");
 }
 
@@ -383,7 +416,8 @@ void print_final_result(int qtdMoves, int *results, int lin, int col){
  * @param[in] col Number of colums
  * @param[in] num_colors Number of colors
  */
-int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
+int *a_star(state_t **matrix_data, int lin, int col, int num_colors)
+{
 
   queue_state_t *destructor = malloc(2 * sizeof(queue_state_t));
   queue_state_t *possible_next = NULL;
@@ -397,18 +431,19 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
   // queue_print("visited_nodes: ", (queue_t *)visited_nodes, print_fila);
   int i = 0;
   int n = 7;
-  while (!goal(visited_nodes, lin * col)) {
+  while (!goal(visited_nodes, lin * col))
+  {
     // printf("Jogadas: %d\n", i);
     // print_matrix(matrix_data, lin, col);
 
     possible_next = search_boards(matrix_data, visited_nodes, lin, col, possible_next);
     // queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
-   
+
     state_t next_color = chose_next_color(possible_next, lin, col, visited_nodes);
     // printf("NextColor: %d\n", next_color.value);
 
     results[i] = next_color.value;
-    
+
     visited_nodes = color_the_board(visited_nodes, matrix_data, next_color);
     possible_next = remove_all_possible_colors(possible_next, next_color);
 
@@ -422,5 +457,3 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors) {
 
   return NULL;
 }
-
-
