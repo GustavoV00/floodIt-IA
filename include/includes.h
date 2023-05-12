@@ -16,6 +16,12 @@
 #define QUAD_C 2
 #define QUAD_D 3
 
+typedef struct result
+{
+  int result;
+  int quadrant;
+} result_t;
+
 typedef struct state_t
 {
   int value;

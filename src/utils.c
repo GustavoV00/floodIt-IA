@@ -24,26 +24,19 @@ state_t **aloc_matrix(state_t **matrix, int lin, int col)
 
 int select_quadrant(int lin, int col, int i, int j)
 {
-  // Top left corner
-  if (i < (lin / 2) && j < (col / 2))
+  if (i < lin / 2 && j < col / 2)
   {
     return QUAD_A;
   }
-
-  // Top right corner
-  else if (i < (lin / 2) && j > (col / 2))
+  else if (i < lin / 2 && j >= col / 2)
   {
     return QUAD_B;
   }
-
-  // Bottom left corner
-  else if (i > (lin / 2) && j < (col / 2))
+  else if (i > lin / 2 && j < col / 2)
   {
     return QUAD_C;
   }
-
-  // Bottom right corner
-  else
+  else if (i >= lin / 2 && j >= col / 2)
   {
     return QUAD_D;
   }
@@ -75,6 +68,7 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
       matrix[i][j].quadrant = select_quadrant(lin, col, i, j);
     }
   }
+  // matrix[i][j].quadrant = configure_quadrant(lin, col, i, j);
   return matrix;
 }
 
@@ -85,6 +79,25 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
  * @param[in] col Number of colums
  */
 void print_matrix(state_t **matrix, int lin, int col)
+{
+  int aux;
+  for (int i = 0; i < lin; i++)
+  {
+    for (int j = 0; j < col; j++)
+    {
+      printf("%d ", matrix[i][j].value);
+    }
+    printf("\n");
+  }
+}
+
+/**
+ * Prints the matrix and quadrant
+ * @param[in] matrix The matrix to be printed
+ * @param[in] lin Number of lines
+ * @param[in] col Number of colums
+ */
+void print_matrix_quadrant(state_t **matrix, int lin, int col)
 {
   int aux;
   for (int i = 0; i < lin; i++)
@@ -116,6 +129,21 @@ void matrix_copy(state_t **src_mat, state_t **dest_mat, int lin, int col)
  * @param[in] col Number of colums
  */
 void desaloc_matrix(state_t **matrix, int lin, int col)
+{
+  for (int i = 0; i < lin; i++)
+  {
+    free(matrix[i]);
+  }
+  free(matrix);
+}
+
+/**
+ * Desallocates the memory used by the matrix
+ * @param[in] matrix The matrix to be desallocated
+ * @param[in] lin Number of lines
+ * @param[in] col Number of colums
+ */
+void desaloc_matrix_int(int **matrix, int lin, int col)
 {
   for (int i = 0; i < lin; i++)
   {

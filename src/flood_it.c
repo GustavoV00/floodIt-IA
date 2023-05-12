@@ -102,68 +102,87 @@ queue_state_t *verify_neighbors(state_t elem, int lin_max, int col_max,
   int j = elem.col;
   if (i > 0 && j > 0 && j < col_max - 1 && i < lin_max - 1)
   {
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
+    if (matrix[i][j].quadrant == matrix[i][j + 1].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 1]);
+    if (matrix[i][j].quadrant == matrix[i][j - 1].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 1]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
+    if (matrix[i][j].quadrant == matrix[i + 1][j].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i - 1][j]);
+    if (matrix[i][j].quadrant == matrix[i - 1][j].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i - 1][j]);
     return possible_next;
   }
 
   if (i == 0)
   {
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
+    if (matrix[i][j].quadrant == matrix[i][j + 1].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
+    if (matrix[i][j].quadrant == matrix[i + 1][j].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
     if (j > 0)
-      possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
-                                       matrix[i][j - 1]);
+      if (matrix[i][j].quadrant == matrix[i][j - 1].quadrant)
+        possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
+                                         matrix[i][j - 1]);
     return possible_next;
   }
 
   if (i == lin_max - 1)
   {
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
+    if (matrix[i][j].quadrant == matrix[i][j + 1].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i - 1][j]);
+    if (matrix[i][j].quadrant == matrix[i - 1][j].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i - 1][j]);
+
     if (j > 0)
-      possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
-                                       matrix[i][j - 1]);
+      if (matrix[i][j].quadrant == matrix[i][j - 1].quadrant)
+        possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
+                                         matrix[i][j - 1]);
     return possible_next;
   }
   if (j == 0)
   {
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
+    if (matrix[i][j].quadrant == matrix[i][j + 1].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j + 1]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
+    if (matrix[i][j].quadrant == matrix[i + 1][j].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
+
     if (i > 0)
-      possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
-                                       matrix[i - 1][j]);
+      if (matrix[i][j].quadrant == matrix[i - 1][j].quadrant)
+        possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
+                                         matrix[i - 1][j]);
     return possible_next;
   }
 
   if (j == col_max - 1)
   {
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 1]);
+    if (matrix[i][j].quadrant == matrix[i][j - 1].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i][j - 1]);
 
-    possible_next =
-        equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
+    if (matrix[i][j].quadrant == matrix[i + 1][j].quadrant)
+      possible_next =
+          equals_neighbors(matrix, possible_next, matrix[i][j], matrix[i + 1][j]);
+
     if (i > 0)
-      possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
-                                       matrix[i - 1][j]);
+      if (matrix[i][j].quadrant == matrix[i - 1][j].quadrant)
+        possible_next = equals_neighbors(matrix, possible_next, matrix[i][j],
+                                         matrix[i - 1][j]);
 
     return possible_next;
   }
@@ -188,7 +207,7 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
 
   if (f != NULL)
   {
-    if (m[i][j].value == f->st.value && m[i][j].visited == 0)
+    if (m[i][j].value == f->st.value && m[i][j].visited == 0 && m[i][j].quadrant == f->st.quadrant)
     {
       f = init_elem(m[i][j], f);
       m[i][j].visited = 1;
@@ -279,8 +298,9 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   queue_state_t *aux = possible_next;
 
   state_t best_elem = aux->st;
-  int best = best_elem.g_n +
-             calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
+  best_elem.h_n = calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
+  int best = best_elem.g_n + best_elem.h_n;
+  best_elem.f_n = best;
 
   state_t new_elem;
   int new_best;
@@ -288,8 +308,9 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
   do
   {
     new_elem = aux->st;
-    new_best = new_elem.g_n +
-               calc_heuristic(new_elem.lin, new_elem.col, max_lin, max_col);
+    new_elem.h_n = calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
+    new_best = new_elem.g_n + new_elem.h_n;
+    new_elem.f_n = new_best;
     if (new_best <= best)
     {
       best_elem = new_elem;
@@ -298,6 +319,7 @@ state_t chose_next_color(queue_state_t *possible_next, int max_lin, int max_col,
     aux = aux->next;
   } while (aux != possible_next);
 
+  printf("best_elemn: %d\n", best_elem.f_n);
   return best_elem;
 }
 
@@ -408,6 +430,33 @@ void print_final_result(int qtdMoves, int *results, int lin, int col)
   printf("\n");
 }
 
+state_t best_elem_between_quads(state_t ncolor_quadA, state_t ncolor_quadB, state_t ncolor_quadC, state_t ncolor_quadD)
+{
+  if (ncolor_quadA.f_n <= ncolor_quadB.f_n && ncolor_quadA.f_n <= ncolor_quadC.f_n && ncolor_quadA.f_n <= ncolor_quadD.f_n && ncolor_quadA.f_n != -1)
+  {
+    printf("test_A: %d\n", ncolor_quadA.f_n);
+    return ncolor_quadA;
+  }
+
+  if (ncolor_quadB.f_n <= ncolor_quadA.f_n && ncolor_quadB.f_n <= ncolor_quadC.f_n && ncolor_quadB.f_n <= ncolor_quadD.f_n && ncolor_quadB.f_n != -1)
+  {
+    printf("test_B: %d\n", ncolor_quadB.f_n);
+    return ncolor_quadB;
+  }
+
+  if (ncolor_quadC.f_n <= ncolor_quadA.f_n && ncolor_quadC.f_n <= ncolor_quadB.f_n && ncolor_quadC.f_n <= ncolor_quadD.f_n && ncolor_quadC.f_n != -1)
+  {
+    printf("test_C: %d\n", ncolor_quadC.f_n);
+    return ncolor_quadC;
+  }
+
+  if (ncolor_quadD.f_n <= ncolor_quadA.f_n && ncolor_quadD.f_n <= ncolor_quadB.f_n && ncolor_quadD.f_n <= ncolor_quadC.f_n && ncolor_quadD.f_n != -1)
+  {
+    printf("test_D: %d\n", ncolor_quadD.f_n);
+    return ncolor_quadD;
+  }
+}
+
 /**
  * Performs A* algorithm
  *
@@ -420,40 +469,136 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors)
 {
 
   queue_state_t *destructor = malloc(2 * sizeof(queue_state_t));
-  queue_state_t *possible_next = NULL;
-  queue_state_t *visited_nodes = NULL;
-  int *results = malloc(lin * col * sizeof(int));
+  queue_state_t *possible_next_quadA = NULL;
+  queue_state_t *possible_next_quadB = NULL;
+  queue_state_t *possible_next_quadC = NULL;
+  queue_state_t *possible_next_quadD = NULL;
 
-  queue_state_t *aux = visited_nodes;
+  queue_state_t *visited_nodes_quadA = NULL;
+  queue_state_t *visited_nodes_quadB = NULL;
+  queue_state_t *visited_nodes_quadC = NULL;
+  queue_state_t *visited_nodes_quadD = NULL;
+  result_t *results = malloc(lin * col * sizeof(result_t));
+
+  queue_state_t *aux_quadA = visited_nodes_quadA;
+  queue_state_t *aux_quadB = visited_nodes_quadB;
+  queue_state_t *aux_quadC = visited_nodes_quadC;
+  queue_state_t *aux_quadD = visited_nodes_quadD;
+
+  state_t next_color_quadA;
+  state_t next_color_quadB;
+  state_t next_color_quadC;
+  state_t next_color_quadD;
+
+  int goal_quadA = (lin / 2) * (col / 2);
+  int goal_quadB = (lin / 2) * (col - (col / 2));
+  int goal_quadC = (lin - (lin / 2)) * (col / 2);
+  int goal_quadD = (lin - (lin / 2)) * (col - (col / 2));
+
   int flag = 1;
-  visited_nodes = find_equals(aux, matrix_data, 0, 0, lin, col);
+  // int quad = choose_quadrant(matrix_data, lin, col, num_colors);
 
-  // queue_print("visited_nodes: ", (queue_t *)visited_nodes, print_fila);
+  visited_nodes_quadA = find_equals(aux_quadA, matrix_data, 0, 0, lin / 2, col / 2);
+  visited_nodes_quadB = find_equals(aux_quadB, matrix_data, 0, (col / 2), lin / 2, col);
+  visited_nodes_quadC = find_equals(aux_quadC, matrix_data, (lin / 2), 0, lin, col / 2);
+  visited_nodes_quadD = find_equals(aux_quadD, matrix_data, (lin / 2), (col / 2), lin, col);
+
+  queue_print("visited_nodesA", (queue_t *)visited_nodes_quadA, print_fila);
+  queue_print("visited_nodesB", (queue_t *)visited_nodes_quadB, print_fila);
+  queue_print("visited_nodesC", (queue_t *)visited_nodes_quadC, print_fila);
+  queue_print("visited_nodesD", (queue_t *)visited_nodes_quadD, print_fila);
   int i = 0;
-  int n = 7;
-  while (!goal(visited_nodes, lin * col))
+  // int n = 7;
+  // while (!goal(visited_nodes, lin * col) && i < 2)
+  while (i < 15)
   {
-    // printf("Jogadas: %d\n", i);
-    // print_matrix(matrix_data, lin, col);
+    printf("Jogadas: %d\n", i);
+    print_matrix(matrix_data, lin, col);
 
-    possible_next = search_boards(matrix_data, visited_nodes, lin, col, possible_next);
-    // queue_print("PossibleNext: ", (queue_t *)possible_next, print_fila);
+    if (!goal(visited_nodes_quadA, goal_quadA))
+    {
+      possible_next_quadA = search_boards(matrix_data, visited_nodes_quadA, lin / 2, col / 2, possible_next_quadA);
+      queue_print("PossibleNextA", (queue_t *)possible_next_quadA, print_fila);
 
-    state_t next_color = chose_next_color(possible_next, lin, col, visited_nodes);
-    // printf("NextColor: %d\n", next_color.value);
+      next_color_quadA = chose_next_color(possible_next_quadA, lin, col, visited_nodes_quadA);
+    }
+    else
+      next_color_quadA.f_n = (lin * lin) * (col * col);
 
-    results[i] = next_color.value;
+    if (!goal(visited_nodes_quadB, goal_quadB))
+    {
+      possible_next_quadB = search_boards(matrix_data, visited_nodes_quadB, lin / 2, col, possible_next_quadB);
+      queue_print("PossibleNextB", (queue_t *)possible_next_quadB, print_fila);
+      next_color_quadB = chose_next_color(possible_next_quadB, lin, col, visited_nodes_quadB);
+    }
+    else
+      next_color_quadB.f_n = (lin * lin) * (col * col);
 
-    visited_nodes = color_the_board(visited_nodes, matrix_data, next_color);
-    possible_next = remove_all_possible_colors(possible_next, next_color);
+    if (!goal(visited_nodes_quadC, goal_quadC))
+    {
+      possible_next_quadC = search_boards(matrix_data, visited_nodes_quadC, lin, col / 2, possible_next_quadC);
+      queue_print("PossibleNextC", (queue_t *)possible_next_quadC, print_fila);
+      next_color_quadC = chose_next_color(possible_next_quadC, lin, col, visited_nodes_quadC);
+    }
+    else
+      next_color_quadC.f_n = (lin * lin) + (col * col);
 
-    visited_nodes = addItemsToVisitedNodes(visited_nodes, matrix_data, lin, col);
-    // queue_print("visited_nodes: : ", (queue_t *)visited_nodes, print_fila);
+    if (!goal(visited_nodes_quadD, goal_quadD))
+    {
+      possible_next_quadD = search_boards(matrix_data, visited_nodes_quadD, lin, col, possible_next_quadD);
+      queue_print("PossibleNextD", (queue_t *)possible_next_quadD, print_fila);
+      next_color_quadD = chose_next_color(possible_next_quadD, lin, col, visited_nodes_quadD);
+    }
+    else
+      next_color_quadD.f_n = (lin * lin) + (col * col);
+
+    printf("quad_A f_n: %d\n", next_color_quadA.f_n);
+    printf("quad_B f_n: %d\n", next_color_quadB.f_n);
+    printf("quad_C f_n: %d\n", next_color_quadC.f_n);
+    printf("quad_D f_n: %d\n", next_color_quadD.f_n);
+
+    state_t next_color = best_elem_between_quads(next_color_quadA, next_color_quadB, next_color_quadC, next_color_quadD);
+
+    printf("next_color: %d\n", next_color.value);
+    printf("next_quadrant: %d\n", next_color.quadrant);
+    printf("coord: (%d,%d)\n", next_color.lin, next_color.col);
+
+    results[i].result = next_color.value;
+    results[i].quadrant = next_color.quadrant;
+
+    if (next_color.quadrant == QUAD_A)
+    {
+      visited_nodes_quadA = color_the_board(visited_nodes_quadA, matrix_data, next_color);
+      possible_next_quadA = remove_all_possible_colors(possible_next_quadA, next_color);
+      visited_nodes_quadA = addItemsToVisitedNodes(visited_nodes_quadA, matrix_data, lin, col);
+      queue_print("visited_nodes_quadA", (queue_t *)visited_nodes_quadA, print_fila);
+    }
+    else if (next_color.quadrant == QUAD_B)
+    {
+      visited_nodes_quadB = color_the_board(visited_nodes_quadB, matrix_data, next_color);
+      possible_next_quadB = remove_all_possible_colors(possible_next_quadB, next_color);
+      visited_nodes_quadB = addItemsToVisitedNodes(visited_nodes_quadB, matrix_data, lin, col);
+      queue_print("visited_nodes_quadB", (queue_t *)visited_nodes_quadB, print_fila);
+    }
+    else if (next_color.quadrant == QUAD_C)
+    {
+      visited_nodes_quadC = color_the_board(visited_nodes_quadC, matrix_data, next_color);
+      possible_next_quadC = remove_all_possible_colors(possible_next_quadC, next_color);
+      visited_nodes_quadC = addItemsToVisitedNodes(visited_nodes_quadC, matrix_data, lin, col);
+      queue_print("visited_nodes_quadC", (queue_t *)visited_nodes_quadC, print_fila);
+    }
+    else if (next_color.quadrant == QUAD_D)
+    {
+      visited_nodes_quadD = color_the_board(visited_nodes_quadD, matrix_data, next_color);
+      possible_next_quadD = remove_all_possible_colors(possible_next_quadD, next_color);
+      visited_nodes_quadD = addItemsToVisitedNodes(visited_nodes_quadD, matrix_data, lin, col);
+      queue_print("visited_nodes_quadD", (queue_t *)visited_nodes_quadD, print_fila);
+    }
 
     i += 1;
   }
 
-  print_final_result(i, results, lin, col);
+  // print_final_result(i, results, lin, col);
 
   return NULL;
 }

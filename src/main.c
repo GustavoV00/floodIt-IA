@@ -33,8 +33,8 @@ int main(int argc, char *argv[])
     // There are two matrix, one to do a manipulation and other with initial states.
     state_t **matrix_data = read_board_data(lin, col, board_file);
 
-    // // A* algorithm
-    // int *v = a_star(matrix_data, lin, col, num_colors);
+    // A* algorithm
+    int *v = a_star(matrix_data, lin, col, num_colors);
 
     // // closes the file
     // close_file(board_file);

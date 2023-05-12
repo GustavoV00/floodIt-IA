@@ -83,3 +83,7 @@ Estrutura que a matriz aloca, para cada elemento dela:
 
 
 
+
+
+1° Estratégia número um. Escolher os quadrantes de forma aleatória.
+    E aplicar a linha de manhatam (Algo assim) no quadrante para decidir a cor
