@@ -419,13 +419,30 @@ queue_state_t *addItemsToVisitedNodes(queue_state_t *visited_nodes,
  * @param[in] lin Number of lines
  * @param[in] col Number of colums
  */
-void print_final_result(int qtdMoves, int *results, int lin, int col)
+void print_final_result(int qtdMoves, result_t *results, int lin, int col)
 {
   printf("%d\n", qtdMoves);
-  for (int i = 0; i < lin * col; i++)
+  for (int i = 0; i < qtdMoves; i++)
   {
-    if (results[i] != 0)
+    if (results[i].result != 0)
+    {
+      switch (results[i].quadrant)
+      {
+      case QUAD_A:
+        printf("a ");
+        break;
+      case QUAD_B:
+        printf("b ");
+        break;
+      case QUAD_C:
+        printf("c ");
+        break;
+      case QUAD_D:
+        printf("d ");
+        break;
+      }
       printf("%d ", results[i]);
+    }
   }
   printf("\n");
 }
@@ -510,7 +527,7 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors)
   int i = 0;
   // int n = 7;
   // while (!goal(visited_nodes, lin * col) && i < 2)
-  while (i < 15)
+  while (!goal(visited_nodes_quadA, goal_quadA) || !goal(visited_nodes_quadB, goal_quadB) || !goal(visited_nodes_quadC, goal_quadC) || !goal(visited_nodes_quadD, goal_quadD))
   {
     printf("Jogadas: %d\n", i);
     print_matrix(matrix_data, lin, col);
@@ -597,8 +614,39 @@ int *a_star(state_t **matrix_data, int lin, int col, int num_colors)
 
     i += 1;
   }
+  // At this point, we have all four quadrants painted. We just need to pain all the quadrants the same color now
+  // To do that, we won't use a heuristic, just pick the color from quadrant b,c and d. At this order.
 
-  // print_final_result(i, results, lin, col);
+  int colors[3] = {matrix_data[0][col - 1].value, matrix_data[lin - 1][0].value, matrix_data[lin - 1][col - 1].value};
+
+  results[i].result = colors[0];
+  results[i].quadrant = QUAD_B;
+
+  printf("Jogadas: %d\n", i);
+  print_matrix(matrix_data, lin, col);
+
+  i += 1;
+
+  results[i].result = colors[1];
+  results[i].quadrant = QUAD_C;
+
+  i += 1;
+
+  results[i].result = colors[2];
+  results[i].quadrant = QUAD_D;
+
+  printf("Jogadas: %d\n", i);
+
+  for (int k = 0; k < lin; k++)
+  {
+    for (int j = 0; j < col; j++)
+    {
+      matrix_data[k][j].value = colors[2];
+    }
+  }
+
+  print_matrix(matrix_data, lin, col);
+  print_final_result(i, results, lin, col);
 
   return NULL;
 }

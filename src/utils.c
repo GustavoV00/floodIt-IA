@@ -32,7 +32,7 @@ int select_quadrant(int lin, int col, int i, int j)
   {
     return QUAD_B;
   }
-  else if (i > lin / 2 && j < col / 2)
+  else if (i >= lin / 2 && j < col / 2)
   {
     return QUAD_C;
   }
