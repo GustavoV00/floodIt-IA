@@ -42,6 +42,24 @@ int select_quadrant(int lin, int col, int i, int j)
   }
 }
 
+int set_g_n(int lin, int col, int i, int j, int quad)
+{
+  if (quad == QUAD_A)
+  {
+    return i + j;
+  }
+  else if (quad == QUAD_B)
+  {
+    return i + (col - j);
+  }
+  else if (quad == QUAD_C)
+  {
+    return (lin - i) + j;
+  }
+  else
+    return (lin - i) + (col - j);
+}
+
 /**
  * Reads the matrix from the file
  * @param[in] matrix
@@ -60,12 +78,12 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
     {
       fscanf(board_file, "%d ", &aux);
       matrix[i][j].value = aux;
-      matrix[i][j].g_n = i + j;
+      matrix[i][j].quadrant = select_quadrant(lin, col, i, j);
+      matrix[i][j].g_n = set_g_n(lin, col, i, j, matrix[i][j].quadrant);
       matrix[i][j].lin = i;
       matrix[i][j].col = j;
       matrix[i][j].visited = 0;
       matrix[i][j].in_board = 0;
-      matrix[i][j].quadrant = select_quadrant(lin, col, i, j);
     }
   }
   // matrix[i][j].quadrant = configure_quadrant(lin, col, i, j);
