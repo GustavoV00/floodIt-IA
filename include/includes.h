@@ -22,15 +22,21 @@ typedef struct result
   int quadrant;
 } result_t;
 
+typedef struct best_color
+{
+  int amount;
+  int color;
+  int quadrant;
+  int lin;
+  int col;
+} best_color_t;
+
 typedef struct state_t
 {
   int value;
-  int g_n;
   int lin;
   int col;
-  int f_n;
   int visited;
-  int h_n;
   int id;
   int in_board;
   int quadrant;

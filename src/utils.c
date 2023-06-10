@@ -79,7 +79,7 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
       fscanf(board_file, "%d ", &aux);
       matrix[i][j].value = aux;
       matrix[i][j].quadrant = select_quadrant(lin, col, i, j);
-      matrix[i][j].g_n = set_g_n(lin, col, i, j, matrix[i][j].quadrant);
+      // matrix[i][j].g_n = set_g_n(lin, col, i, j, matrix[i][j].quadrant);
       matrix[i][j].lin = i;
       matrix[i][j].col = j;
       matrix[i][j].visited = 0;

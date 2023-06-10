@@ -1,1 +1,6 @@
-{}
+{
+  "files.associations": {
+    "*.erb": "erb",
+    "includes.h": "c"
+  }
+}
