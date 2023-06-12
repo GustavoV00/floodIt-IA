@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     state_t **matrix_data = read_board_data(lin, col, board_file);
 
     // A* algorithm
-    int *v = a_star(matrix_data, lin, col, num_colors);
+    a_star(matrix_data, lin, col, num_colors);
 
     // // closes the file
     // close_file(board_file);

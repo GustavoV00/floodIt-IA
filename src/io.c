@@ -49,7 +49,8 @@ void read_board_configs(int *board_arr, FILE *f)
 state_t **read_board_data(int lin, int col, FILE *board_file)
 {
   // alocates matrix lin x col
-  state_t **matrix = aloc_matrix(matrix, lin, col);
+  state_t **matrix = NULL;
+  matrix = aloc_matrix(matrix, lin, col);
 
   // fills the matrix with file board
   matrix = read_matriz_from_file(matrix, lin, col, board_file);

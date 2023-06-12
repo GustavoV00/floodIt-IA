@@ -29,6 +29,7 @@ typedef struct best_color
   int quadrant;
   int lin;
   int col;
+  int counter;
 } best_color_t;
 
 typedef struct state_t

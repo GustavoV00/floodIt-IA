@@ -35,7 +35,7 @@ build:
 	@mkdir -p build
 
 build/%.o: src/%.c | build
-	$(CC) -c $< -o $@
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	@echo Removing object files

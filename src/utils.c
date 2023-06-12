@@ -40,6 +40,7 @@ int select_quadrant(int lin, int col, int i, int j)
   {
     return QUAD_D;
   }
+  return QUAD_D;
 }
 
 int set_g_n(int lin, int col, int i, int j, int quad)
@@ -71,7 +72,6 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
                                 FILE *board_file)
 {
   int aux;
-  int id = 0;
   for (int i = 0; i < lin; i++)
   {
     for (int j = 0; j < col; j++)
@@ -98,7 +98,6 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
  */
 void print_matrix(state_t **matrix, int lin, int col)
 {
-  int aux;
   for (int i = 0; i < lin; i++)
   {
     for (int j = 0; j < col; j++)
@@ -117,7 +116,6 @@ void print_matrix(state_t **matrix, int lin, int col)
  */
 void print_matrix_quadrant(state_t **matrix, int lin, int col)
 {
-  int aux;
   for (int i = 0; i < lin; i++)
   {
     for (int j = 0; j < col; j++)
