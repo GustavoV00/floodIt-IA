@@ -16,6 +16,11 @@
 #define QUAD_C 2
 #define QUAD_D 3
 
+#define ADJ_AB 1
+#define ADJ_BC 2
+#define ADJ_AD 3
+#define ADJ_DC 4
+
 typedef struct result
 {
   int result;
@@ -24,7 +29,6 @@ typedef struct result
 
 typedef struct best_color
 {
-  int amount;
   int color;
   int quadrant;
   int lin;
@@ -39,8 +43,13 @@ typedef struct state_t
   int col;
   int visited;
   int id;
+  int g_n;
+  int f_n;
+  int h_n;
   int in_board;
   int quadrant;
+
+  int amount;
 } state_t;
 
 typedef struct queue_state_t
