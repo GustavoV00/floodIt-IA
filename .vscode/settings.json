@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "*.erb": "erb",
-    "includes.h": "c"
+    "includes.h": "c",
+    "io.h": "c"
   }
 }

@@ -27,15 +27,6 @@ typedef struct result
   int quadrant;
 } result_t;
 
-typedef struct best_color
-{
-  int color;
-  int quadrant;
-  int lin;
-  int col;
-  int counter;
-} best_color_t;
-
 typedef struct state_t
 {
   int value;
