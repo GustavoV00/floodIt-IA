@@ -1,4 +1,4 @@
-// TRAB1 IA - 2023-1
+// TRAB1 IA - 2023
 // GUSTAVO VALENTE NUNES GRR20182557
 
 #include "../include/includes.h"
@@ -225,22 +225,22 @@ queue_state_t *find_equals(queue_state_t *f, state_t **m, int i, int j,
 }
 
 /**
- * Chooses (using a heurist funcion and total cost) the next color
+ * Verify if the neighboor of the neighboor colors are equal. Add to possible_colors queue
  *
  * @param[in] possible_next Queue of next possible options
  * @param[in] max_lin Quantity of board lines
  * @param[in] max_col Quantity of board columns
  * @param[in] f Queue of visited nodes
+ * @param[in] quad Quadrant
+ * @param[in] matrix_data Matrix with data
  */
 
 queue_state_t *choose_next_color(queue_state_t *possible_next, int max_lin, int max_col, queue_state_t *f, int num_colors, int quad, state_t **matrix_data)
 {
-  printf("choose_next_color: entrando\n");
   queue_state_t *visited_nodes_aux = NULL;
   int size = queue_size((queue_t *)possible_next);
 
   queue_state_t *aux = possible_next;
-  printf("size: %d\n", size);
 
   for (int i = 0; i < size; i++)
   {
@@ -259,7 +259,6 @@ queue_state_t *choose_next_color(queue_state_t *possible_next, int max_lin, int 
 
     aux = aux->next;
   }
-  printf("choose_next_color: saindo\n");
 
   return possible_next;
 }
@@ -282,26 +281,13 @@ queue_state_t *search_boards(state_t **matrix, queue_state_t *visited_nodes,
   {
     state_t elem = aux->st;
 
-    // Procura no [i][j+1], [i+1][j], etc...
     possible_next = verify_neighbors(elem, lin, col, matrix, possible_next);
 
     aux = aux->next;
   } while (aux != visited_nodes);
   aux = possible_next;
-  printf("quad: %d\n", quad);
   if (possible_next != NULL)
-  {
-    // do
-    // {
-    //   state_t elem = aux->st;
-
-    //   // printf("lin: %d || col: %d || visited: %d || color: %d\n", elem.lin, elem.col, elem.visited, elem.value);
-
-    //   aux = aux->next;
-    // } while (aux != possible_next);
     possible_next = choose_next_color(possible_next, lin, col, visited_nodes, num_colors, quad, matrix);
-  }
-  printf("sai aqui\n");
 
   return possible_next;
 }
@@ -320,7 +306,6 @@ int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col)
   int side1 = max_col - elem_j;
   int side2 = max_lin - elem_i;
   int result = (side1 * side1) + (side2 * side2);
-  // printf("result_test = (%d * %d) + (%d * %d) = %d\n", side1, side1, side2, side2, result);
   return result;
 }
 
@@ -333,14 +318,13 @@ int calc_heuristic(int elem_i, int elem_j, int max_lin, int max_col)
  * @param[in] f Queue of visited nodes
  */
 
-state_t best_color(queue_state_t *possible_next, int max_lin, int max_col, int flag, int *colors_count, int quad, int num_colors)
+state_t best_color(queue_state_t *possible_next, int max_lin, int max_col, int flag, int quad, int num_colors)
 {
 
   queue_state_t *aux = possible_next;
 
   state_t best_elem = aux->st;
-  int best = best_elem.g_n +
-             calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
+  int best = best_elem.g_n + calc_heuristic(best_elem.lin, best_elem.col, max_lin, max_col);
 
   state_t new_elem;
   int new_best;
@@ -368,7 +352,6 @@ state_t best_color(queue_state_t *possible_next, int max_lin, int max_col, int f
     aux = aux->next;
   } while (aux != possible_next);
 
-  // printf("best_elemn: %d || color: %d || lin: %d || col: %d\n", best_elem.f_n, best_elem.value, best_elem.lin, best_elem.col);
   best_elem.quadrant = quad;
   return best_elem;
 }
@@ -378,6 +361,7 @@ state_t best_color(queue_state_t *possible_next, int max_lin, int max_col, int f
  *
  * @param[in] f Queue to be cleared
  * @param[in] next_color Next color state to ble cleared
+ * @param[in] visited_nodes Node already visited
  */
 queue_state_t *remove_all_possible_colors(queue_state_t *f, state_t next_color, queue_state_t *visited_nodes)
 {
@@ -391,7 +375,6 @@ queue_state_t *remove_all_possible_colors(queue_state_t *f, state_t next_color, 
     if (next_color.value == aux->st.value)
     {
       queue_state_t *aux2 = aux;
-      // removed_items = init_elem(aux2->st, removed_items);
 
       aux = aux->prev;
       queue_remove((queue_t **)&f, (queue_t *)aux2);
@@ -399,9 +382,6 @@ queue_state_t *remove_all_possible_colors(queue_state_t *f, state_t next_color, 
 
       assert(fila_correta(f));             // estrutura continua correta
       assert(fila_correta(visited_nodes)); // estrutura continua correta
-      // assert(aux2->prev == NULL); // testa elemento removido
-      // assert(aux2->next == NULL); // testa elemento removido
-      // free(aux2);
     }
 
     i += 1;
@@ -417,6 +397,7 @@ queue_state_t *remove_all_possible_colors(queue_state_t *f, state_t next_color, 
  * @param[in] f Queue of visited nodes
  * @param[in] m Matrix data
  * @param[in] color Element that has the color to paint the board
+ * @param[in] quad Quadrant
  */
 queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color, int quad)
 {
@@ -430,7 +411,6 @@ queue_state_t *color_the_board(queue_state_t *f, state_t **m, state_t color, int
     i = aux->st.lin;
     j = aux->st.col;
 
-    // printf("quad_test: %d\n", m[i][j].quadrant);
     m[i][j].value = color.value;
 
     aux = aux->next;
@@ -502,6 +482,25 @@ void change_heuristic_direction_matrix(state_t **matrix_data, int lin, int col, 
 }
 
 /**
+ * Print result as requested
+ *
+ * @param[in] visited_nodes Nodes already visisted
+ * @param[in] lin Number of lines
+ * @param[in] col Number of colums
+ */
+int in_queue(queue_state_t *visisted_nodes, int lin, int col)
+{
+  queue_state_t *aux = visisted_nodes;
+  do
+  {
+    if (aux->st.lin == lin && aux->st.col == col)
+      return 1;
+    aux = aux->next;
+  } while (aux != visisted_nodes);
+  return 0;
+}
+
+/**
  * Performs A* algorithm
  *
  * @param[in] matrix_data The matrix of data
@@ -518,26 +517,21 @@ void a_star(state_t **matrix_data, int lin, int col, int num_colors)
   queue_state_t *possible_next = NULL;
   result_t *results = malloc(lin * col * sizeof(result_t));
 
-  int colors_count[num_colors];
-
   int quad = QUAD_A;
 
-  queue_print("visited_nodesA", (queue_t *)visited_nodes, print_fila);
-
   int i = 0;
-  int flag = 0;
+  int flag = 0; // Change the direction from C to B and B to D
 
-  while (!goal(visited_nodes, lin * col))
-  // while (i < 77)
+  while (!goal(visited_nodes, (lin * col)))
+  // while (possible_next != NULL || i == 0)
   {
-    printf("Jogadas: %d\n", i);
-    print_matrix(matrix_data, lin, col);
+    // printf("Jogadas: %d\n", i);
+    // print_matrix(matrix_data, lin, col);
 
     // print_matrix_quadrant(matrix_data, lin, col);
 
     if (A_ADJ_C == 1)
     {
-      printf("Deu?\n");
       quad = QUAD_C;
       A_ADJ_C = -1;
       change_heuristic_direction_matrix(matrix_data, lin, col, quad);
@@ -545,7 +539,6 @@ void a_star(state_t **matrix_data, int lin, int col, int num_colors)
     }
     if (B_ADJ_D == 1)
     {
-      printf("Deu2?\n");
       quad = QUAD_B;
       B_ADJ_D = -1;
       change_heuristic_direction_matrix(matrix_data, lin, col, quad);
@@ -553,43 +546,39 @@ void a_star(state_t **matrix_data, int lin, int col, int num_colors)
     if (D_ADJ_B == 1)
     {
 
-      printf("Deu3?\n");
       quad = QUAD_D;
       D_ADJ_B = -1;
     }
 
     possible_next = search_boards(matrix_data, visited_nodes, lin, col, possible_next, quad, num_colors);
-    queue_print("possible_next", (queue_t *)possible_next, print_fila);
+    // queue_print("possible_next", (queue_t *)possible_next, print_fila);
 
-    state_t next_color = best_color(possible_next, lin, col, flag, colors_count, quad, num_colors);
+    state_t next_color = best_color(possible_next, lin, col, flag, quad, num_colors);
 
-    if (matrix_data[lin - 1][col - 1].visited == 1 && A_ADJ_C != -1)
-    {
-      A_ADJ_C = 1;
-    }
-    if (matrix_data[0][col - 1].visited == 1 && B_ADJ_D != -1 && A_ADJ_C == -1)
-    {
-      B_ADJ_D = 1;
-    }
-    if (matrix_data[lin - 1][0].visited == 1 && A_ADJ_C == -1 && D_ADJ_B != -1)
-      D_ADJ_B = 1;
-
-    printf("next_color: %d\n", next_color.value);
-    printf("next_quadrant: %d\n", next_color.quadrant);
-    printf("coord: (%d,%d)\n", next_color.lin, next_color.col);
-    printf("quad: (%d)\n", next_color.quadrant);
+    // printf("next_color: %d\n", next_color.value);
+    // printf("next_quadrant: %d\n", next_color.quadrant);
+    // printf("coord: (%d,%d)\n", next_color.lin, next_color.col);
+    // printf("quad: (%d)\n", next_color.quadrant);
 
     results[i].result = next_color.value;
     results[i].quadrant = next_color.quadrant;
 
     visited_nodes = color_the_board(visited_nodes, matrix_data, next_color, quad);
     possible_next = remove_all_possible_colors(possible_next, next_color, visited_nodes);
+    // printf("\n");
+
+    if (in_queue(visited_nodes, lin - 1, col - 1) && A_ADJ_C != -1)
+      A_ADJ_C = 1;
+    if (in_queue(visited_nodes, 0, col - 1) && B_ADJ_D != -1 && A_ADJ_C == -1)
+      B_ADJ_D = 1;
+    if (in_queue(visited_nodes, lin - 1, 0) && A_ADJ_C == -1 && D_ADJ_B != -1)
+      D_ADJ_B = 1;
 
     i += 1;
   }
 
-  print_matrix(matrix_data, lin, col);
-  print_matrix_quadrant(matrix_data, lin, col);
+  // print_matrix(matrix_data, lin, col);
+  // print_matrix_quadrant(matrix_data, lin, col);
   print_final_result(i, results, lin, col);
-  queue_print("possible_next", (queue_t *)possible_next, print_fila);
+  // queue_print("possible_next", (queue_t *)possible_next, print_fila);
 }

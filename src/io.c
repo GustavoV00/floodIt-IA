@@ -1,4 +1,4 @@
-// TRAB1 IA - 2021-2
+// TRAB1 IA - 2023
 // GUSTAVO VALENTE NUNES GRR20182557
 
 #include "../include/io.h"
@@ -54,7 +54,7 @@ state_t **read_board_data(int lin, int col, FILE *board_file)
 
   // fills the matrix with file board
   matrix = read_matriz_from_file(matrix, lin, col, board_file);
-  print_matrix_quadrant(matrix, lin, col);
+  // print_matrix_quadrant(matrix, lin, col);
 
   // desaloc_matrix(matrix, lin, col);
 

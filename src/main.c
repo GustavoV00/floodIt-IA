@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     int lin = board_arr[0];
     int col = board_arr[1];
 
-    if (lin < 4 || col < 4)
+    if (lin < 2 || col < 2)
     {
       perror("The min of lines or colums is 4, is needed at leats four quadrants\n");
       return -1;
@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
     // A* algorithm
     a_star(matrix_data, lin, col, num_colors);
 
-    // // closes the file
-    // close_file(board_file);
+    // closes the file
+    close_file(board_file);
   }
 
   return 0;

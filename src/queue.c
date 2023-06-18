@@ -1,6 +1,5 @@
-// TRAB1 IA - 2021-2
+// TRAB1 IA - 2023
 // GUSTAVO VALENTE NUNES GRR20182557
-// BRUNO EDUARDO FARIAS GRR20186715
 
 #include "../include/queue.h"
 #include "../include/includes.h"

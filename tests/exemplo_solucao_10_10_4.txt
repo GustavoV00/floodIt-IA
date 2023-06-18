@@ -1,2 +1,2 @@
-33
-c 4 c 5 d 5 d 2 d 1 d 3 d 4 d 5 d 3 d 2 d 1 b 1 b 5 b 2 b 4 b 3 b 1 b 2 b 4 b 5 b 1 b 4 b 2 b 3 b 5 d 3 d 5 d 4 a 1 a 4 a 4 b 5 c 4
+14
+a 3 a 5 a 1 a 4 a 3 a 2 a 4 a 2 a 4 c 5 d 1 d 2 d 5 b 3 

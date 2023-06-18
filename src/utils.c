@@ -1,4 +1,4 @@
-// TRAB1 IA - 2023-1
+// TRAB1 IA - 2023
 // GUSTAVO VALENTE NUNES GRR20182557
 
 #include "../include/includes.h"
@@ -60,7 +60,6 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
     {
       fscanf(board_file, "%d ", &aux);
       matrix[i][j].value = aux;
-      // matrix[i][j].g_n = set_g_n(i, j, lin, col);
       matrix[i][j].g_n = i + j;
       matrix[i][j].lin = i;
       matrix[i][j].col = j;
@@ -70,7 +69,6 @@ state_t **read_matriz_from_file(state_t **matrix, int lin, int col,
     }
   }
 
-  // matrix[i][j].quadrant = configure_quadrant(lin, col, i, j);
   return matrix;
 }
 

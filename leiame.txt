@@ -34,20 +34,21 @@ Estrutura de diretórios:
 Estratégia de desenvolvimento:
     Recebemos um arquivo de entrada na entrada padrão, e lemos a primeira linha que seriam as dimensões e a quantidade de cores que o tabuleiro terá. Pegamos essas dimensões e criamos uma matriz. Agora que temos uma matriz criada, como se fosse o tabuleiro, podemos começar a implementar o A*.
     Logo no início da função a_star(), criamos uma fila chamada "visisted_nodes", que vai nos dizer quais foram os pontos do tabuleiro que já estão conectados com o início. E para encontrar todo o conjunto, é utilizado um algoritmo chamado flood fill. 
-    Assim que temos todo o conjunto na fila, podemos procurar os elementos que estão em suas bordas, que serão os possíveis próximos passos. Para isso, temos uma fila de "possible_next" que indica os elementos que estão nas bordas dos pontos já visitados, essa borda é recursiva de forma que se tivermos uma borda de valor 2 e o vizinho do vizinho dessa borda também for 2, é considerado esse vizinho do vizinho como borda também e é adicionado esse valor ao "possible_next" junto com a própria borda em si. 
+    Assim que temos todo o conjunto na fila, podemos procurar os elementos que estão em suas bordas, que serão os possíveis próximos passos. Para isso, temos uma fila de "possible_next" que indica os elementos que estão nas bordas dos pontos já visitados, essa borda é recursiva de forma que se tivermos uma borda de valor 2 e o vizinho do 2 desta borda também for 2, é considerado esse vizinho do vizinho como borda também e é adicionado esse valor ao "possible_next" junto com a própria borda em si. 
     Como temos essa lista de possíveis próximos nodos, só precisamos calcular a heurística naquele ponto com seu estado atual. Como é possível jogar pelas quatro pontas do tabuleiro, a estratégia utilizada para resolver o jogo é a seguinte:
       1. Furar o tabuleiro do quadrante A ao quadrante C. 
-      2. Após chegar no quadrante C, a estratégia é tentar criar uma ponta no quadrante B.
-      3. E para finalizar, é feita uma conexão com o quadrante D.
-      4. Então em partes, o jogo fica A->C->B->D e após chegar no D o tabuleiro está quase sendo finalizado.
+      2. Após chegar no quadrante C, a estratégia é tentar criar uma ponta no quadrante B ou D, o que vier primeiro. Porém, a ideia é tentar mirar no quadrante B primeiro.
+      3. E para finalizar, é feito uma ponta para o D. Porém, caso o D tenha sido perfurado antes do B, então nesse caso a última ponta seria para o B. 
+        Nota: Em relação aos pontos 2 e 3, na estratégia a ordem é A->C->B->D, porém em tabuleiros pequenos, pode ser que aconteça do D ser perfurado primeiro que o B e se isso acontecer, só inverte a ordem para A->C->D->B, porém a estratégia e heurística contínua sendo a mesma.
+      4. Então em partes, o jogo fica A->C->B->D e após chegar no D o tabuleiro está quase sendo finalizado não é mais mudado a heurística, deixa apenas seguir o fluxo até terminar.
 
 Heuristica e custo:
-  g(n): Temos dois casos, no caso inicial quando se abre o jogo, o g(n) é o a soma dos indícies para indicar o quão longe o quadrante A está do quadrante C.
-        Depois que se chega no quadrante C, é feito a mesma coisa só que o g(n) muda para fazer a heuristica apontar para o qudrante B e depois para o quadrante D. 
+  g(n): Temos dois casos, no caso inicial quando se abre o jogo, o g(n) é a soma dos índices para indicar o quão longe o quadrante A está do quadrante C.
+        Depois que se chega no quadrante C, é feito a mesma coisa, só que o g(n) muda para fazer a heurística apontar para o quadrante B e depois para o quadrante D. 
 
   h(n): A nossa heurística é uma linha reta na diagonal, dependendo do ponto pode ser 
-        uma linha reta mesmo. É utilizado o teorema de pitágoras para calcular essa distância. 
-        Conforme a jogo vai se desenvolvendo, é mudado para onde a heuristica é apontada.
+        uma linha reta mesmo. É utilizado o teorema de Pitágoras para calcular essa distância. 
+        Conforme o jogo vai se desenvolvendo, é mudado para onde a heurística é apontada, dependendo de como o jogo está em andamento, pode apontar para o quadrante B ou para o D.
 
 Estruturas utilizadas:
  Temos uma estrutura genérica de fila:
@@ -85,3 +86,9 @@ Estrutura que a matriz aloca, para cada elemento dela:
       int quadrant;     -> Indica o quadrante no momento.
     } state_t;
 
+Estrutura utilizada para armazenar os resultados de cada passo do jogo:
+    typedef struct result
+    {
+      int result;
+      int quadrant;
+    } result_t;
